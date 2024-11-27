@@ -1,0 +1,16 @@
+[
+  {
+    "Title": "Call of duty",
+    "Description": "blah",
+    "Price": "85.99",
+    "Image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw2LCu8eNrlkF7QreDDTKyfL7fZeL2yca-cA&s",
+    "Category": "Video game"
+  },
+  {
+    "Title": "When a stranger calls",
+    "Description": "blah",
+    "Price": "13.64",
+    "Image": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTS6OVGThRDrZKaWDe8FYJwjxJUKUPgVAWByf4-DmjtPM5ZVU9vXouY93Y70lFEq25BxZHM3p-yD8Mg5ov72TlzpmcLK7LF9DfY_hmaVpLDcd95KDddC2yloA",
+    "Category": "Movie"
+  }
+]
