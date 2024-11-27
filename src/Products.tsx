@@ -4,16 +4,16 @@ export function Products(): React.ReactElement {
   var itemList;
 
   function getItems() {
-    itemList = JSON.parse("../public/products.json");
+    itemList = JSON.parse("../products.json");
     console.log(itemList);
   }
 
-  useEffect(() => {
-    getItems();
-  });
+  // useEffect(() => {
+  //   getItems();
+  // });
   return (
     <div>
-      <p>something</p>
+      <h1>Still loading.... Kupo!</h1>
     </div>
   );
 }
