@@ -1,7 +1,11 @@
 import {
   AppBar,
   Button,
+  FormControl,
+  InputLabel,
   makeStyles,
+  MenuItem,
+  Select,
   TextField,
   Typography,
 } from "@material-ui/core";
@@ -29,6 +33,12 @@ const useStyles = makeStyles(() => ({
     display: "inline-block",
     paddingLeft: "100px",
   },
+  filter: {
+    paddingLeft: "10px",
+    paddingRight: "5px",
+    paddingBottom: "10px",
+    marginLeft: "50px",
+  },
   logo: {
     marginLeft: "50px",
   },
@@ -41,7 +51,7 @@ export default function Header(): React.ReactElement {
       <Toolbar className={classes.toolBar}>
         <img
           className={classes.logo}
-          src={"../public/logo.png"}
+          src={"/logo.png"}
           alt="Logo"
           height="100px"
         />
@@ -95,22 +105,48 @@ export default function Header(): React.ReactElement {
             </a>
           </div>
         </div>
+        {/* <div className={classes.filter}>
+          <FormControl
+            variant="outlined"
+            style={{ width: "100px", height: "45px" }}
+          >
+            <InputLabel id="demo-simple-select-autowidth-label">
+              Filter
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-autowidth-label"
+              id="demo-simple-select-autowidth"
+              autoWidth
+              label="Filter"
+            >
+              <MenuItem value={0}>None</MenuItem>
+              <MenuItem value={1}>Name</MenuItem>
+              <MenuItem value={2}>Movie</MenuItem>
+              <MenuItem value={3}>Game</MenuItem>
+              <MenuItem value={4}>Book</MenuItem>
+            </Select>
+          </FormControl>
+        </div> */}
         <TextField
           className={classes.textField}
           variant="outlined"
           size="small"
           placeholder="Search in moogle"
           InputProps={{
-            style: { color: "black" },
+            style: {
+              color: "black",
+              borderRadius: "5px 0 0 5px",
+            },
           }}
         />
-        <div style={{ height: "40px", width: "50px", paddingLeft: "4px" }}>
+        <div style={{ height: "40px", width: "50px", paddingLeft: "0px" }}>
           <button
             style={{
               height: "40px",
               width: "50px",
               backgroundColor: "#FFC0CB",
               color: "black",
+              borderRadius: "0 5px 5px 0",
             }}
           >
             <SearchOutlinedIcon
