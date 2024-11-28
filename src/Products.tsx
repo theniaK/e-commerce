@@ -13,8 +13,10 @@ export default function Products(): React.ReactElement {
   // });
   return (
     <div>
-      <h1 style={{ color: "#FFC0CB" }}>Oops! Something went wrong.... Kupo!</h1>
-      <p style={{ color: "#FFC0CB" }}>Our moogles are working to fix this</p>
+      <h1 style={{ color: "#FFC0CB" }}>Something went wrong.... Kupo!</h1>
+      <p style={{ color: "#FFC0CB", fontSize: "25px" }}>
+        Our moogles are working to fix this
+      </p>
     </div>
   );
 }
