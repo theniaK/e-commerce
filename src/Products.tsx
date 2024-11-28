@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-export function Products(): React.ReactElement {
+export default function Products(): React.ReactElement {
   var itemList;
 
   function getItems() {
@@ -13,9 +13,8 @@ export function Products(): React.ReactElement {
   // });
   return (
     <div>
-      <h1>Still loading.... Kupo!</h1>
+      <h1 style={{ color: "#FFC0CB" }}>Oops! Something went wrong.... Kupo!</h1>
+      <p style={{ color: "#FFC0CB" }}>Our moogles are working to fix this</p>
     </div>
   );
 }
-
-export default Products;

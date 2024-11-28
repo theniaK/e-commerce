@@ -1,25 +1,26 @@
 import {
   AppBar,
-  Card,
+  Button,
   makeStyles,
   TextField,
   Typography,
-  CardMedia,
 } from "@material-ui/core";
 import { Toolbar } from "@material-ui/core";
 import React from "react";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+
 const useStyles = makeStyles(() => ({
   toolBar: {
     backgroundColor: "white",
   },
   menu: {
-    marginLeft: "50px",
+    marginLeft: "40px",
   },
   menuItems: {
     fontFamily: "Candara, sans-serif",
     position: "relative",
     display: "inline-block",
-    paddingLeft: "20px",
+    paddingLeft: "5px",
     fontSize: "25px",
     color: "black",
   },
@@ -33,7 +34,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export function Header(): React.ReactElement {
+export default function Header(): React.ReactElement {
   const classes = useStyles();
   return (
     <AppBar className={classes.toolBar}>
@@ -51,7 +52,9 @@ export function Header(): React.ReactElement {
               onClick={() => {}}
               style={{ textDecoration: "none", color: "inherit" }}
             >
-              <Typography>Home</Typography>
+              <Button>
+                <Typography style={{ textTransform: "none" }}>Home</Typography>
+              </Button>
             </a>
           </div>
           <div className={classes.menuItems}>
@@ -60,7 +63,9 @@ export function Header(): React.ReactElement {
               onClick={() => {}}
               style={{ textDecoration: "none", color: "inherit" }}
             >
-              <Typography>Shop</Typography>
+              <Button>
+                <Typography style={{ textTransform: "none" }}>Shop</Typography>
+              </Button>
             </a>
           </div>
           <div className={classes.menuItems}>
@@ -69,7 +74,11 @@ export function Header(): React.ReactElement {
               onClick={() => {}}
               style={{ textDecoration: "none", color: "inherit" }}
             >
-              <Typography>Featured</Typography>
+              <Button>
+                <Typography style={{ textTransform: "none" }}>
+                  Featured
+                </Typography>
+              </Button>
             </a>
           </div>
           <div className={classes.menuItems}>
@@ -78,7 +87,11 @@ export function Header(): React.ReactElement {
               onClick={() => {}}
               style={{ textDecoration: "none", color: "inherit" }}
             >
-              <Typography>Recommended</Typography>
+              <Button>
+                <Typography style={{ textTransform: "none" }}>
+                  Recommended
+                </Typography>
+              </Button>
             </a>
           </div>
         </div>
@@ -91,14 +104,21 @@ export function Header(): React.ReactElement {
             style: { color: "black" },
           }}
         />
-        <div style={{ paddingLeft: "300px", paddingBottom: "10px" }}>
+        <div style={{ height: "50px", width: "50px", paddingLeft: "5px" }}>
+          <button style={{ backgroundColor: "#FFC0CB", color: "black" }}>
+            <SearchOutlinedIcon />
+          </button>
+        </div>
+        <div style={{ paddingLeft: "250px", paddingBottom: "10px" }}>
           <div className={classes.menuItems}>
             <a
               href="/your-link-url"
               onClick={() => {}}
               style={{ textDecoration: "none", color: "inherit" }}
             >
-              <Typography>Login</Typography>
+              <Button>
+                <Typography style={{ textTransform: "none" }}>Login</Typography>
+              </Button>
             </a>
           </div>
           <div className={classes.menuItems}>
@@ -110,7 +130,11 @@ export function Header(): React.ReactElement {
               onClick={() => {}}
               style={{ textDecoration: "none", color: "inherit" }}
             >
-              <Typography>Sign Up</Typography>
+              <Button>
+                <Typography style={{ textTransform: "none" }}>
+                  Sign up
+                </Typography>
+              </Button>
             </a>
           </div>
         </div>
@@ -118,5 +142,3 @@ export function Header(): React.ReactElement {
     </AppBar>
   );
 }
-
-export default Header;
