@@ -35,6 +35,14 @@ export default function Products(): React.ReactElement {
     setData(items);
   }, [products]);
 
+  const truncateText = (text: any, wordLimit: any) => {
+    const words = text.split(" ");
+    if (words.length > wordLimit) {
+      return words.slice(0, wordLimit).join(" ") + "...";
+    }
+    return text;
+  };
+
   return (
     <div>
       {data ? (
@@ -84,8 +92,13 @@ export default function Products(): React.ReactElement {
                     </Typography>
                   </div>
                   <div>
-                    <Typography style={{ fontSize: "12px" }}>
-                      {item.Description}
+                    <Typography
+                      style={{
+                        fontSize: "12px",
+                        overflow: "hidden",
+                      }}
+                    >
+                      {truncateText(item.Description, 18)}
                     </Typography>
                   </div>
                   <Box>
