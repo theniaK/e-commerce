@@ -22,8 +22,7 @@ const useStyles = makeStyles(() => ({
     paddingTop: 0,
     width: "300px",
     height: "300px",
-
-    backgroundColor: "#F7F6F4",
+    backgroundColor: "#F8F8F8",
   },
 }));
 
@@ -73,7 +72,14 @@ export default function Products(): React.ReactElement {
                     </Typography>
                   </div>
                   <div>
-                    <Typography style={{ fontSize: "20px" }} component="div">
+                    <Typography
+                      style={{
+                        fontSize: "20px",
+                        fontFamily: "Candara, sans-serif",
+                        fontWeight: "bold",
+                      }}
+                      component="div"
+                    >
                       {item.Title}
                     </Typography>
                   </div>
@@ -85,6 +91,7 @@ export default function Products(): React.ReactElement {
                   <Box>
                     <Typography
                       style={{
+                        fontFamily: "Candara, sans-serif",
                         fontWeight: "bold",
                         fontSize: "20px",
                         position: "absolute",

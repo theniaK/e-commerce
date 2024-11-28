@@ -18,13 +18,13 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "white",
   },
   menu: {
-    marginLeft: "40px",
+    marginLeft: "auto",
   },
   menuItems: {
     fontFamily: "Candara, sans-serif",
     position: "relative",
     display: "inline-block",
-    paddingLeft: "5px",
+    paddingLeft: "auto",
     fontSize: "25px",
     color: "black",
   },
@@ -58,7 +58,7 @@ export default function Header(): React.ReactElement {
         <div className={classes.menu}>
           <div className={classes.menuItems}>
             <a
-              href="/your-link-url"
+              href="/home"
               onClick={() => {}}
               style={{ textDecoration: "none", color: "inherit" }}
             >
@@ -69,7 +69,7 @@ export default function Header(): React.ReactElement {
           </div>
           <div className={classes.menuItems}>
             <a
-              href="/your-link-url"
+              href="/shop"
               onClick={() => {}}
               style={{ textDecoration: "none", color: "inherit" }}
             >
@@ -80,7 +80,7 @@ export default function Header(): React.ReactElement {
           </div>
           <div className={classes.menuItems}>
             <a
-              href="/your-link-url"
+              href="/featured"
               onClick={() => {}}
               style={{ textDecoration: "none", color: "inherit" }}
             >
@@ -93,7 +93,7 @@ export default function Header(): React.ReactElement {
           </div>
           <div className={classes.menuItems}>
             <a
-              href="/your-link-url"
+              href="/recommended"
               onClick={() => {}}
               style={{ textDecoration: "none", color: "inherit" }}
             >
@@ -122,7 +122,7 @@ export default function Header(): React.ReactElement {
               <MenuItem value={0}>None</MenuItem>
               <MenuItem value={1}>Name</MenuItem>
               <MenuItem value={2}>Movie</MenuItem>
-              <MenuItem value={3}>Game</MenuItem>
+              <MenuItem value={3}>Video Game</MenuItem>
               <MenuItem value={4}>Book</MenuItem>
             </Select>
           </FormControl>
@@ -157,7 +157,7 @@ export default function Header(): React.ReactElement {
         <div style={{ paddingLeft: "250px", paddingBottom: "10px" }}>
           <div className={classes.menuItems}>
             <a
-              href="/your-link-url"
+              href="/login"
               onClick={() => {}}
               style={{ textDecoration: "none", color: "inherit" }}
             >
@@ -171,7 +171,7 @@ export default function Header(): React.ReactElement {
           </div>
           <div className={classes.menuItems}>
             <a
-              href="/your-link-url"
+              href="/signup"
               onClick={() => {}}
               style={{ textDecoration: "none", color: "inherit" }}
             >
