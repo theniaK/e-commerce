@@ -104,9 +104,18 @@ export default function Header(): React.ReactElement {
             style: { color: "black" },
           }}
         />
-        <div style={{ height: "50px", width: "50px", paddingLeft: "5px" }}>
-          <button style={{ backgroundColor: "#FFC0CB", color: "black" }}>
-            <SearchOutlinedIcon />
+        <div style={{ height: "40px", width: "50px", paddingLeft: "4px" }}>
+          <button
+            style={{
+              height: "40px",
+              width: "50px",
+              backgroundColor: "#FFC0CB",
+              color: "black",
+            }}
+          >
+            <SearchOutlinedIcon
+              style={{ marginTop: "-3px", marginLeft: "-6px" }}
+            />
           </button>
         </div>
         <div style={{ paddingLeft: "250px", paddingBottom: "10px" }}>
