@@ -25,8 +25,47 @@ const useStyles = makeStyles(() => ({
     height: "300px",
     backgroundColor: "#F8F8F8",
   },
+  cardMedia: {
+    borderRadius: "1px",
+    paddingTop: "10px",
+    marginLeft: "107px",
+    width: "80px",
+    height: "100px",
+  },
   dialogue: {
     backgroundColor: "#F8F8F8",
+  },
+  styleCategory: {
+    fontSize: "12px",
+    width: "35%",
+    marginLeft: "85px",
+    marginBottom: "10px",
+    backgroundColor: "#FFC0CB",
+  },
+  styleTitle: {
+    fontSize: "20px",
+    fontFamily: "Candara, sans-serif",
+    fontWeight: "bold",
+    cursor: "pointer",
+  },
+  styleDescription: {
+    fontSize: "12px",
+    overflow: "hidden",
+    cursor: "pointer",
+  },
+  stylePrice: {
+    fontFamily: "Candara, sans-serif",
+    fontWeight: "bold",
+    fontSize: "20px",
+    position: "absolute",
+    marginLeft: "65px",
+    marginTop: "22px",
+  },
+  styleButton: {
+    backgroundColor: "#d3c9ca",
+    position: "absolute",
+    marginLeft: "0",
+    marginTop: "20px",
   },
 }));
 
@@ -66,13 +105,7 @@ export default function Products(): React.ReactElement {
           data.map((item) => (
             <Card key={item.id} className={classes.card}>
               <CardMedia
-                style={{
-                  borderRadius: "1px",
-                  paddingTop: "10px",
-                  marginLeft: "107px",
-                  width: "80px",
-                  height: "100px",
-                }}
+                className={classes.cardMedia}
                 component="img"
                 height="140"
                 image={item.Image}
@@ -81,27 +114,13 @@ export default function Products(): React.ReactElement {
                 style={{ paddingBottom: "200px", paddingTop: "10px" }}
               >
                 <div>
-                  <Typography
-                    style={{
-                      fontSize: "12px",
-                      width: "35%",
-                      marginLeft: "85px",
-                      marginBottom: "10px",
-                      backgroundColor: "#FFC0CB",
-                    }}
-                    component="div"
-                  >
+                  <Typography className={classes.styleCategory} component="div">
                     {item.Category}
                   </Typography>
                 </div>
                 <div>
                   <Typography
-                    style={{
-                      fontSize: "20px",
-                      fontFamily: "Candara, sans-serif",
-                      fontWeight: "bold",
-                      cursor: "pointer",
-                    }}
+                    className={classes.styleTitle}
                     onClick={() => onCardClick(item)}
                     component="div"
                   >
@@ -110,37 +129,17 @@ export default function Products(): React.ReactElement {
                 </div>
                 <div>
                   <Typography
-                    style={{
-                      fontSize: "12px",
-                      overflow: "hidden",
-                      cursor: "pointer",
-                    }}
+                    className={classes.styleDescription}
                     onClick={() => onCardClick(item)}
                   >
                     {truncateText(item.Description, 18)}
                   </Typography>
                 </div>
                 <Box>
-                  <Typography
-                    style={{
-                      fontFamily: "Candara, sans-serif",
-                      fontWeight: "bold",
-                      fontSize: "20px",
-                      position: "absolute",
-                      marginLeft: "65px",
-                      marginTop: "22px",
-                    }}
-                  >
+                  <Typography className={classes.stylePrice}>
                     {item.Price}$
                   </Typography>
-                  <Button
-                    style={{
-                      backgroundColor: "#d3c9ca",
-                      position: "absolute",
-                      marginLeft: "0",
-                      marginTop: "20px",
-                    }}
-                  >
+                  <Button className={classes.styleButton}>
                     <ShoppingCartOutlinedIcon />
                   </Button>
                 </Box>
