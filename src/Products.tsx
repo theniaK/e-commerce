@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import ItemDetaliDialogue from "./ItemDetailDialogue";
+import ItemsNotLoadingMessage from "./ItemsNotLoadingMessage";
 
 const useStyles = makeStyles(() => ({
   card: {
@@ -147,20 +148,10 @@ export default function Products(): React.ReactElement {
             </Card>
           ))
         ) : (
-          <div>
-            <h1 style={{ color: "#FFC0CB" }}>Something went wrong.... Kupo!</h1>
-            <p style={{ color: "#FFC0CB", fontSize: "25px" }}>
-              Our moogles are working to fix this
-            </p>
-          </div>
+          <ItemsNotLoadingMessage />
         )
       ) : (
-        <div>
-          <h1 style={{ color: "#FFC0CB" }}>Something went wrong.... Kupo!</h1>
-          <p style={{ color: "#FFC0CB", fontSize: "25px" }}>
-            Our moogles are working to fix this
-          </p>
-        </div>
+        <ItemsNotLoadingMessage />
       )}
       <ItemDetaliDialogue
         selectedItem={selectedItem}
