@@ -10,8 +10,8 @@ import {
   Typography,
 } from "@material-ui/core";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import ItemDetaliDialogue from "./ItemDetailDialogue";
-import ItemsNotLoadingMessage from "./ItemsNotLoadingMessage";
+import ItemDetailDialogue from "./ItemDetailDialogue";
+import ItemsNullOrEmptyMessage from "./ItemsNullOrEmptyMessage";
 
 const useStyles = makeStyles(() => ({
   card: {
@@ -148,12 +148,12 @@ export default function Products(): React.ReactElement {
             </Card>
           ))
         ) : (
-          <ItemsNotLoadingMessage />
+          <ItemsNullOrEmptyMessage />
         )
       ) : (
-        <ItemsNotLoadingMessage />
+        <ItemsNullOrEmptyMessage />
       )}
-      <ItemDetaliDialogue
+      <ItemDetailDialogue
         selectedItem={selectedItem}
         openDialogue={openDialog}
         handleCloseDialog={handleCloseDialog}

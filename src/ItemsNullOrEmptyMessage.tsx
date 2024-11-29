@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ItemsNotLoadingMessage(): React.ReactElement {
+export default function ItemsNullOrEmptyMessage(): React.ReactElement {
   return (
     <div>
       <h1 style={{ color: "#FFC0CB" }}>Something went wrong.... Kupo!</h1>

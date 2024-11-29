@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function ItemDetaliDialogue({
+export default function ItemDetailDialogue({
   selectedItem,
   openDialogue,
   handleCloseDialog,
