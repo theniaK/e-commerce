@@ -4,15 +4,13 @@ import {
   Box,
   Button,
   Card,
-  Dialog,
-  DialogActions,
-  DialogContent,
   CardContent,
   CardMedia,
   makeStyles,
   Typography,
 } from "@material-ui/core";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import ItemDetaliDialogue from "./ItemDetailDialogue";
 
 const useStyles = makeStyles(() => ({
   card: {
@@ -48,7 +46,6 @@ export default function Products(): React.ReactElement {
     setOpenDialog(false);
     setSelectedItem(null);
   }
-
   useEffect(() => {
     setData(items);
   }, [products]);
@@ -165,73 +162,11 @@ export default function Products(): React.ReactElement {
           </p>
         </div>
       )}
-      <Dialog open={openDialog} onClose={handleCloseDialog}>
-        <DialogContent className={classes.dialogue}>
-          {selectedItem && (
-            <div>
-              <img
-                src={selectedItem.Image}
-                style={{
-                  width: "200px",
-                  height: "250px",
-                  borderRadius: "4px",
-                  marginTop: "10px",
-                  marginLeft: "170px",
-                }}
-              />
-              <Typography
-                style={{
-                  fontSize: "25px",
-                  fontFamily: "Candara, sans-serif",
-                  fontWeight: "bold",
-                  marginTop: "30px",
-                  marginBottom: "30px",
-                }}
-              >
-                {selectedItem.Title}
-              </Typography>
-              <Typography
-                style={{
-                  fontSize: "14px",
-                  fontFamily: "Arial, sans-serif",
-                  marginBottom: "50px",
-                  alignItems: "center",
-                }}
-              >
-                {selectedItem.Description}
-              </Typography>
-              <Typography
-                style={{
-                  fontSize: "25px",
-                  fontFamily: "Candara, sans-serif",
-                  fontWeight: "bold",
-                  marginBottom: "10px",
-                }}
-              >
-                Price: {selectedItem.Price}$
-              </Typography>
-            </div>
-          )}
-        </DialogContent>
-        <DialogActions className={classes.dialogue}>
-          <Button
-            onClick={handleCloseDialog}
-            style={{
-              fontFamily: "Candara, sans-serif",
-              color: "black",
-              backgroundColor: "#FFC0CB",
-              width: "100px",
-              height: "30px",
-              borderRadius: "4px",
-              paddingTop: "5px",
-              marginBottom: "10px",
-              marginRight: "10px",
-            }}
-          >
-            Back
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <ItemDetaliDialogue
+        selectedItem={selectedItem}
+        openDialogue={openDialog}
+        handleCloseDialog={handleCloseDialog}
+      />
     </div>
   );
 }
