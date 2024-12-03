@@ -112,7 +112,7 @@ export default function Products({ searchQuery }: props): React.ReactElement {
         data?.length > 0 ? (
           data
             ?.filter((item) =>
-              item.Title.toLowerCase().includes(searchQuery.toLowerCase())
+              item.Title.toLowerCase().startsWith(searchQuery.toLowerCase())
             )
             .map((item) => (
               <Card key={item.id} className={classes.card}>
