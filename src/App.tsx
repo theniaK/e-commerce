@@ -16,12 +16,16 @@ const useStyles = makeStyles(() => ({
 function App() {
   const classes = useStyles();
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [isSearchTriggered, setISearchTriggered] = useState<boolean>(false);
   let isSignUp = false;
 
   function handleSearchQuery(query: string) {
     setSearchQuery(query);
   }
 
+  function handleSearchButtonClick() {
+    setISearchTriggered(true);
+  }
   return (
     <div className={classes.container}>
       {isSignUp ? (
@@ -31,8 +35,12 @@ function App() {
           <Header
             searchQuery={searchQuery}
             onSearchChange={handleSearchQuery}
+            onSearchButtonClicked={handleSearchButtonClick}
           />
-          <Products searchQuery={searchQuery} />
+          <Products
+            searchQuery={searchQuery}
+            isSearchTriggered={isSearchTriggered}
+          />
         </div>
       )}
     </div>

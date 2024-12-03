@@ -47,11 +47,13 @@ const useStyles = makeStyles(() => ({
 type props = {
   searchQuery: string;
   onSearchChange: (query: string) => void;
+  onSearchButtonClicked: () => void;
 };
 
 export default function Header({
   searchQuery,
   onSearchChange,
+  onSearchButtonClicked,
 }: props): React.ReactElement {
   const classes = useStyles();
 
@@ -163,6 +165,7 @@ export default function Header({
               color: "black",
               borderRadius: "0 5px 5px 0",
             }}
+            onClick={onSearchButtonClicked}
           >
             <SearchOutlinedIcon
               style={{ marginTop: "-3px", marginLeft: "-6px" }}

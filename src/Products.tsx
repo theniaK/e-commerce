@@ -74,9 +74,13 @@ const useStyles = makeStyles(() => ({
 
 type props = {
   searchQuery: string;
+  isSearchTriggered: boolean;
 };
 
-export default function Products({ searchQuery }: props): React.ReactElement {
+export default function Products({
+  searchQuery,
+  isSearchTriggered,
+}: props): React.ReactElement {
   const classes = useStyles();
   const items = products;
   const [data, setData] = useState<any[]>([]);
@@ -94,6 +98,13 @@ export default function Products({ searchQuery }: props): React.ReactElement {
   }
 
   useEffect(() => {
+    if (isSearchTriggered) {
+      isSearchTriggered = false;
+    }
+    console.log(isSearchTriggered);
+  }, [isSearchTriggered]);
+
+  useEffect(() => {
     setData(items);
   }, [products]);
 
@@ -107,7 +118,7 @@ export default function Products({ searchQuery }: props): React.ReactElement {
 
   return (
     <div>
-      {searchQuery && data ? (
+      {searchQuery && isSearchTriggered && data ? (
         // If searchQuery is provided and data exists, filter the data
         data?.length > 0 ? (
           data
