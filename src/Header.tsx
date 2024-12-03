@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Toolbar } from "@material-ui/core";
-import React from "react";
+import React, { ChangeEvent } from "react";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
 const useStyles = makeStyles(() => ({
@@ -43,12 +43,22 @@ const useStyles = makeStyles(() => ({
     marginLeft: "50px",
   },
 }));
-/**
- *
- * @returns
- */
-export default function Header(): React.ReactElement {
+
+type props = {
+  searchQuery: string;
+  onSearchChange: (query: string) => void;
+};
+
+export default function Header({
+  searchQuery,
+  onSearchChange,
+}: props): React.ReactElement {
   const classes = useStyles();
+
+  function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
+    onSearchChange(event.target.value);
+  }
+
   return (
     <AppBar className={classes.toolBar}>
       <Toolbar className={classes.toolBar}>
@@ -135,6 +145,8 @@ export default function Header(): React.ReactElement {
           variant="outlined"
           size="small"
           placeholder="Search in moogle"
+          value={searchQuery}
+          onChange={handleInputChange}
           InputProps={{
             style: {
               color: "black",

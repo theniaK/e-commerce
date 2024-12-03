@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core";
 import Header from "./Header";
 import Products from "./Products";
 import SignUp from "./Signup";
+import { useState } from "react";
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -14,8 +15,12 @@ const useStyles = makeStyles(() => ({
 
 function App() {
   const classes = useStyles();
-
+  const [searchQuery, setSearchQuery] = useState<string>("");
   let isSignUp = false;
+
+  function handleSearchQuery(query: string) {
+    setSearchQuery(query);
+  }
 
   return (
     <div className={classes.container}>
@@ -23,8 +28,11 @@ function App() {
         <SignUp />
       ) : (
         <div>
-          <Header />
-          <Products />
+          <Header
+            searchQuery={searchQuery}
+            onSearchChange={handleSearchQuery}
+          />
+          <Products searchQuery={searchQuery} />
         </div>
       )}
     </div>

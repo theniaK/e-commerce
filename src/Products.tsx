@@ -72,11 +72,14 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function Products(): React.ReactElement {
+type props = {
+  searchQuery: string;
+};
+
+export default function Products({ searchQuery }: props): React.ReactElement {
   const classes = useStyles();
   const items = products;
   const [data, setData] = useState<any[]>([]);
-
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -85,10 +88,29 @@ export default function Products(): React.ReactElement {
     setOpenDialog(true);
   }
 
+  function getFilteredData(searchQuery: string) {
+    return data.filter((item) =>
+      item.Title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }
+
+  // useEffect(() => {
+  //   if (searchQuery === "") {
+  //     setData(items);
+  //   } else {
+  //     filtered = data?.filter((item) => {
+  //       item.Title.toLowerCase().includes(searchQuery.toLowerCase());
+  //       setFilteredData(filtered);
+  //       console.log(filtered);
+  //     });
+  //   }
+  // }, [searchQuery]);
+
   function handleCloseDialog() {
     setOpenDialog(false);
     setSelectedItem(null);
   }
+
   useEffect(() => {
     setData(items);
   }, [products]);
