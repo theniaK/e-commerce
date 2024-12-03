@@ -22,15 +22,17 @@ const useStyles = makeStyles(() => ({
     marginLeft: "20px",
     paddingTop: 0,
     width: "300px",
-    height: "300px",
+    height: "350px",
     backgroundColor: "#F8F8F8",
+    boxShadow: "0 4px 8px rgba(169, 169, 169, 0.5)",
   },
   cardMedia: {
     borderRadius: "1px",
-    paddingTop: "10px",
+    paddingTop: "15px",
     marginLeft: "107px",
     width: "80px",
     height: "100px",
+    cursor: "pointer",
   },
   dialogue: {
     backgroundColor: "#F8F8F8",
@@ -47,6 +49,7 @@ const useStyles = makeStyles(() => ({
     fontFamily: "Candara, sans-serif",
     fontWeight: "bold",
     cursor: "pointer",
+    height: "65px",
   },
   styleDescription: {
     fontSize: "12px",
@@ -109,6 +112,7 @@ export default function Products(): React.ReactElement {
                 component="img"
                 height="140"
                 image={item.Image}
+                onClick={() => onCardClick(item)}
               />
               <CardContent
                 style={{ paddingBottom: "200px", paddingTop: "10px" }}

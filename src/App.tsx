@@ -2,6 +2,7 @@ import "./App.css";
 import { makeStyles } from "@material-ui/core";
 import Header from "./Header";
 import Products from "./Products";
+import SignUp from "./Signup";
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -14,10 +15,18 @@ const useStyles = makeStyles(() => ({
 function App() {
   const classes = useStyles();
 
+  let isSignUp = false;
+
   return (
     <div className={classes.container}>
-      <Header />
-      <Products />
+      {isSignUp ? (
+        <SignUp />
+      ) : (
+        <div>
+          <Header />
+          <Products />
+        </div>
+      )}
     </div>
   );
 }
