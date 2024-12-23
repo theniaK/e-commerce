@@ -18,7 +18,6 @@ const useStyles = makeStyles(() => ({
     position: "relative",
     display: "inline-block",
     marginTop: "100px",
-    marginBottom: "0",
     marginLeft: "20px",
     paddingTop: 0,
     width: "300px",
@@ -122,8 +121,12 @@ export default function Products({
         // If searchQuery is provided and data exists, filter the data
         data?.length > 0 ? (
           data
-            ?.filter((item) =>
-              item.Title.toLowerCase().startsWith(searchQuery.toLowerCase())
+            ?.filter(
+              (item) =>
+                item.Title.toLowerCase().startsWith(
+                  searchQuery.toLowerCase()
+                ) ||
+                item.Title.toLowerCase().includes(searchQuery.toLowerCase())
             )
             .map((item) => (
               <Card key={item.id} className={classes.card}>
