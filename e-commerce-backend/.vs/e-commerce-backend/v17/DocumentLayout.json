@@ -7,16 +7,20 @@
       "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\models\\postgresdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:models\\postgresdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\e-commerce-backend.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:e-commerce-backend.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\models\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:models\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\e-commerce-backend.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
-      "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:e-commerce-backend.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+      "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\enums\\categoryenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:enums\\categoryenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,11 +30,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PostgresDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Models\\PostgresDbContext.cs",
+              "RelativeDocumentMoniker": "Models\\PostgresDbContext.cs",
+              "ToolTip": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Models\\PostgresDbContext.cs",
+              "RelativeToolTip": "Models\\PostgresDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-20T19:28:19.776Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CategoryEnum.cs",
+              "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Enums\\CategoryEnum.cs",
+              "RelativeDocumentMoniker": "Enums\\CategoryEnum.cs",
+              "ToolTip": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Enums\\CategoryEnum.cs",
+              "RelativeToolTip": "Enums\\CategoryEnum.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-20T19:25:49.966Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Item.cs",
+              "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Models\\Item.cs",
+              "RelativeDocumentMoniker": "Models\\Item.cs",
+              "ToolTip": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Models\\Item.cs",
+              "RelativeToolTip": "Models\\Item.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAQwAwAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-20T19:20:35.068Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -40,46 +83,20 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAD4vw0AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-23T18:25:49.953Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "e-commerce-backend.http",
-              "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\e-commerce-backend.http",
-              "RelativeDocumentMoniker": "e-commerce-backend.http",
-              "ToolTip": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\e-commerce-backend.http",
-              "RelativeToolTip": "e-commerce-backend.http",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2024-12-23T18:25:35.939Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "e-commerce-backend.csproj",
-              "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\e-commerce-backend.csproj",
-              "RelativeDocumentMoniker": "e-commerce-backend.csproj",
-              "ToolTip": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\e-commerce-backend.csproj",
-              "RelativeToolTip": "e-commerce-backend.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-12-23T18:15:04.621Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Properties\\launchSettings.json",
               "ToolTip": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Properties\\launchSettings.json",
               "RelativeToolTip": "Properties\\launchSettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAsAAABsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2024-12-23T17:43:43.749Z",
               "EditorCaption": ""
