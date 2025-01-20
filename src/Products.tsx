@@ -120,64 +120,77 @@ export default function Products({
       {searchQuery && isSearchTriggered && data ? (
         // If searchQuery is provided and data exists, filter the data
         data?.length > 0 ? (
-          data
-            ?.filter(
-              (item) =>
-                item.Title.toLowerCase().startsWith(
-                  searchQuery.toLowerCase()
-                ) ||
-                item.Title.toLowerCase().includes(searchQuery.toLowerCase())
-            )
-            .map((item) => (
-              <Card key={item.id} className={classes.card}>
-                <CardMedia
-                  className={classes.cardMedia}
-                  component="img"
-                  height="140"
-                  image={item.Image}
-                  onClick={() => onCardClick(item)}
-                />
-                <CardContent
-                  style={{ paddingBottom: "200px", paddingTop: "10px" }}
-                >
-                  <div>
-                    <Typography
-                      className={classes.styleCategory}
-                      component="div"
-                    >
-                      {item.Category}
-                    </Typography>
-                  </div>
-                  <div>
-                    <Typography
-                      className={classes.styleTitle}
-                      onClick={() => onCardClick(item)}
-                      component="div"
-                    >
-                      {item.Title}
-                    </Typography>
-                  </div>
-                  <div>
-                    <Typography
-                      className={classes.styleDescription}
-                      onClick={() => onCardClick(item)}
-                    >
-                      {truncateText(item.Description, 18)}
-                    </Typography>
-                  </div>
-                  <Box>
-                    <Typography className={classes.stylePrice}>
-                      {item.Price}$
-                    </Typography>
-                    <Button className={classes.styleButton}>
-                      <ShoppingCartOutlinedIcon />
-                    </Button>
-                  </Box>
-                </CardContent>
-              </Card>
-            ))
+          // Filtered data
+          data.filter(
+            (item) =>
+              item.Title.toLowerCase().startsWith(searchQuery.toLowerCase()) ||
+              item.Title.toLowerCase().includes(searchQuery.toLowerCase())
+          ).length > 0 ? (
+            // If there are matches, render the filtered items
+            data
+              .filter(
+                (item) =>
+                  item.Title.toLowerCase().startsWith(
+                    searchQuery.toLowerCase()
+                  ) ||
+                  item.Title.toLowerCase().includes(searchQuery.toLowerCase())
+              )
+              .map((item) => (
+                <Card key={item.id} className={classes.card}>
+                  <CardMedia
+                    className={classes.cardMedia}
+                    component="img"
+                    height="140"
+                    image={item.Image}
+                    onClick={() => onCardClick(item)}
+                  />
+                  <CardContent
+                    style={{ paddingBottom: "200px", paddingTop: "10px" }}
+                  >
+                    <div>
+                      <Typography
+                        className={classes.styleCategory}
+                        component="div"
+                      >
+                        {item.Category}
+                      </Typography>
+                    </div>
+                    <div>
+                      <Typography
+                        className={classes.styleTitle}
+                        onClick={() => onCardClick(item)}
+                        component="div"
+                      >
+                        {item.Title}
+                      </Typography>
+                    </div>
+                    <div>
+                      <Typography
+                        className={classes.styleDescription}
+                        onClick={() => onCardClick(item)}
+                      >
+                        {truncateText(item.Description, 18)}
+                      </Typography>
+                    </div>
+                    <Box>
+                      <Typography className={classes.stylePrice}>
+                        {item.Price}$
+                      </Typography>
+                      <Button className={classes.styleButton}>
+                        <ShoppingCartOutlinedIcon />
+                      </Button>
+                    </Box>
+                  </CardContent>
+                </Card>
+              ))
+          ) : (
+            // If no matches are found, show "No matches found"
+            <Typography className={classes.styleTitle}>
+              No matches found
+            </Typography>
+          )
         ) : (
-          // If no searchQuery or no data
+          // If no data is found, show a message
           <ItemsNullOrEmptyMessage />
         )
       ) : // If no search query is provided, show all data
@@ -229,6 +242,7 @@ export default function Products({
         // Show message when data is empty
         <ItemsNullOrEmptyMessage />
       )}
+
       <ItemDetailDialogue
         selectedItem={selectedItem}
         openDialogue={openDialog}
