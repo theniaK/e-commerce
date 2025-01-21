@@ -42,12 +42,23 @@ namespace e_commerce_backend.Controllers
                         item.Id = Guid.NewGuid();
                         _context.Items.Add(item);
                         await _context.SaveChangesAsync();
-                        return await Task.FromResult(NoContent());
                     }
+                        return await Task.FromResult(NoContent());
                 }
             }
 
             return StatusCode(500);
+        }
+
+        [HttpDelete("delete")]
+        [ProducesResponseType(204)]
+        public async Task<ActionResult> DeleteAllItems()
+        {
+            IEnumerable<ItemDTO> items = await _context.Items.ToListAsync();
+            _context.RemoveRange(items);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
 
         /// <summary>

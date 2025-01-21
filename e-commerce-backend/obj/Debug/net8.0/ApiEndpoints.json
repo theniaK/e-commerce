@@ -1,6 +1,22 @@
 [
   {
     "ContainingType": "e_commerce_backend.Controllers.ItemsController",
+    "Method": "DeleteAllItems",
+    "RelativePath": "api/Items/delete",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 204
+      }
+    ]
+  },
+  {
+    "ContainingType": "e_commerce_backend.Controllers.ItemsController",
     "Method": "GetItem",
     "RelativePath": "api/Items/get",
     "HttpMethod": "GET",
@@ -63,9 +79,9 @@
     ]
   },
   {
-    "ContainingType": "e_commerce_backend.Controllers.UserController",
+    "ContainingType": "e_commerce_backend.Controllers.UsersController",
     "Method": "PostUser",
-    "RelativePath": "api/User/post",
+    "RelativePath": "api/Users/post",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

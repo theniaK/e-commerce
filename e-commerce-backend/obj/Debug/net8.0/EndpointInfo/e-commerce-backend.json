@@ -20,6 +20,18 @@
         }
       }
     },
+    "/api/Items/delete": {
+      "delete": {
+        "tags": [
+          "Items"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
     "/api/Items/post": {
       "post": {
         "tags": [
@@ -89,10 +101,10 @@
         }
       }
     },
-    "/api/User/post": {
+    "/api/Users/post": {
       "post": {
         "tags": [
-          "User"
+          "Users"
         ],
         "requestBody": {
           "content": {

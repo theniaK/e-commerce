@@ -7,15 +7,20 @@ namespace e_commerce_backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class UserController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public UserController(ApplicationDbContext context)
+        public UsersController(ApplicationDbContext context)
         {
             _context = context;
         }
 
+        /// <summary>
+        /// Post a user to the DB
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPost("post")]
         [ProducesResponseType(204)]
         public async Task<ActionResult> PostUser(User user)
