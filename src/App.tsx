@@ -4,6 +4,7 @@ import Header from "./Header";
 import Products from "./Products";
 import SignUp from "./Signup";
 import { useState } from "react";
+import SignIn from "./SignIn";
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -28,7 +29,7 @@ function App() {
   }
   return (
     <div className={classes.container}>
-      {isSignUp ? (
+      {!isSignUp ? (
         <SignUp />
       ) : (
         <div>

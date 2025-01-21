@@ -7,8 +7,7 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, ChangeEventHandler, useState } from "react";
 const useStyles = makeStyles(() => ({
   form: {
     height: "650px",
@@ -43,10 +42,10 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function SignUp(): React.ReactElement {
+export default function SignIn(): React.ReactElement {
   const classes = useStyles();
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [isValidEmail, setIsValidEmail] = useState(false);
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const [isFocused, setIsFocused] = useState(false);
@@ -82,30 +81,12 @@ export default function SignUp(): React.ReactElement {
           width="150px"
         />
         <Typography variant="h3" className={classes.title}>
-          Sign Up
+          Sign In
         </Typography>
         <Typography className={classes.secondTitle}>
-          Create an account or <Link href="/signin">Sign in</Link>
+          Log in to your account
         </Typography>
         <div style={{ marginTop: "40px" }}>
-          <div>
-            <TextField
-              label="First Name"
-              variant="outlined"
-              color="secondary"
-              required={true}
-              className={classes.textField}
-            />
-          </div>
-          <div>
-            <TextField
-              label="Last Name"
-              variant="outlined"
-              color="secondary"
-              required={true}
-              className={classes.textField}
-            />
-          </div>
           <div>
             <TextField
               label="Email"
@@ -123,6 +104,11 @@ export default function SignUp(): React.ReactElement {
               Invalid email address.
             </FormHelperText>
           )}
+          {/*           {isValidEmail === true && (
+            <FormHelperText style={{ paddingLeft: "170px", color: "green" }}>
+              Valid email address!
+            </FormHelperText>
+          )} */}
           <div>
             <TextField
               label="Password"
@@ -135,7 +121,7 @@ export default function SignUp(): React.ReactElement {
             />
           </div>
           <div>
-            <Button className={classes.button}>Sign Up</Button>
+            <Button className={classes.button}>Sign In</Button>
           </div>
         </div>
       </FormControl>
