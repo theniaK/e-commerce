@@ -1,9 +1,12 @@
 ﻿using System;
+using AutoMapper;
 using e_commerce_backend.Context;
 using e_commerce_backend.DTOs;
 using e_commerce_backend.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Newtonsoft.Json;
 
 namespace e_commerce_backend.Controllers
@@ -14,6 +17,10 @@ namespace e_commerce_backend.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _env;
+
+        Mapper mapper = new Mapper(new MapperConfiguration((cfg) => {
+            cfg.CreateMap<Item, ItemDTO>();
+        }));
 
         public ItemsController(ApplicationDbContext context, IWebHostEnvironment env)
         {
@@ -50,6 +57,10 @@ namespace e_commerce_backend.Controllers
             return StatusCode(500);
         }
 
+        /// <summary>
+        /// Delete all item records from database
+        /// </summary>
+        /// <returns></returns>
         [HttpDelete("delete")]
         [ProducesResponseType(204)]
         public async Task<ActionResult> DeleteAllItems()
@@ -70,18 +81,23 @@ namespace e_commerce_backend.Controllers
         [ProducesResponseType(204)]
         public async Task<ActionResult> PostItem(Item item)
         {
-            ItemDTO ItemDTO = new ItemDTO
-            {
-                Id = Guid.NewGuid(),
-                Title = item.Title,
-                Description = item.Description,
-                Price = item.Price,
-                Image = item.Image,
-                Category = item.Category,
-            };
+            //ItemDTO ItemDTO = new ItemDTO
+            //{
+            //    Id = Guid.NewGuid(),
+            //    Title = item.Title,
+            //    Description = item.Description,
+            //    Price = item.Price,
+            //    Image = item.Image,
+            //    Category = item.Category,
+            //};
 
-            _context.Items.Add(ItemDTO);
-            await _context.SaveChangesAsync();
+            ItemDTO ItemDTO = mapper.Map<ItemDTO>(item);
+            if(ItemDTO != null)
+            {
+                ItemDTO.Id = Guid.NewGuid();
+                _context.Items.Add(ItemDTO);
+                await _context.SaveChangesAsync();
+            }
 
             return await Task.FromResult(NoContent());
         }
@@ -91,6 +107,7 @@ namespace e_commerce_backend.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("get")]
+        //[Authorize]
         [ProducesResponseType(200)]
         public async Task<ActionResult<IEnumerable<Item>>> GetItem()
         {

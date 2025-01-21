@@ -1,5 +1,9 @@
+using AutoMapper;
 using e_commerce_backend.Context;
+using e_commerce_backend.DTOs;
+using e_commerce_backend.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +24,21 @@ builder.Services.AddCors(options =>
     });
 });
 
+//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+//    .AddJwtBearer(options =>
+//    {
+//        options.RequireHttpsMetadata = false;  // Set to true in production
+//        options.SaveToken = true;
+//        options.TokenValidationParameters = new TokenValidationParameters
+//        {
+//            ValidateIssuer = true,
+//            ValidateAudience = true,
+//            ValidIssuer = "your-issuer", // Replace with your issuer
+//            ValidAudience = "your-audience", // Replace with your audience
+//            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("your-secret-key")) // Secret key for signing tokens
+//        };
+//    });
+//builder.Services.AddAuthorization();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection")));
 

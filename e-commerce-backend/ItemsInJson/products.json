@@ -75,5 +75,12 @@
         "Price": "9.99",
         "Image": "https://m.media-amazon.com/images/I/71ZmwhDbzUL._AC_UF894,1000_QL80_.jpg",
         "Category": "Movie"
+    },
+    {
+        "title": "Scary Movie",
+        "description": "The film is a parody of multiple genres including the horror, slasher, and mystery film genres. Several 1990s films and TV shows are also spoofed, and the script primarily follows the plot of the slasher films Scream and I Know What You Did Last Summer. Some films and TV shows like Halloween, The Shining, Friday the 13th, The Usual Suspects, The Sixth Sense, The Blair Witch Project, The Matrix and Buffy the Vampire Slayer were also parodied in some scenes.",
+        "price": 15.36,
+        "image": "https://m.media-amazon.com/images/I/51CK1J3135L._AC_UF894,1000_QL80_.jpg",
+        "category": "Movie"
     }
 ]

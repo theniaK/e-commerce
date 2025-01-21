@@ -21,9 +21,9 @@ namespace e_commerce_backend.Controllers
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        [HttpPost("post")]
+        [HttpPost("signup")]
         [ProducesResponseType(204)]
-        public async Task<ActionResult> PostUser(User user)
+        public async Task<ActionResult> SignUpUser(User user)
         {
             UserDTO UserDTO = new UserDTO
             {
@@ -41,5 +41,18 @@ namespace e_commerce_backend.Controllers
 
             return await Task.FromResult(NoContent());
         }
+
+        //[HttpPost("login")]
+        //public IActionResult Login([FromBody] LoginModel model)
+        //{
+        //    var user = _userService.ValidateUser(model.Username, model.Password);
+        //    if (user == null)
+        //    {
+        //        return Unauthorized("Invalid credentials");
+        //    }
+
+        //    var token = GenerateJwtToken(user);  // Method to generate a JWT token
+        //    return Ok(new { Token = token });
+        //}
     }
 }

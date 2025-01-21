@@ -80,8 +80,8 @@
   },
   {
     "ContainingType": "e_commerce_backend.Controllers.UsersController",
-    "Method": "PostUser",
-    "RelativePath": "api/Users/post",
+    "Method": "SignUpUser",
+    "RelativePath": "api/Users/signup",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

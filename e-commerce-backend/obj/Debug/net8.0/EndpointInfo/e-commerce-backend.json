@@ -101,7 +101,7 @@
         }
       }
     },
-    "/api/Users/post": {
+    "/api/Users/signup": {
       "post": {
         "tags": [
           "Users"
