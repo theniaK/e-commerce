@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "ContainingType": "e_commerce_backend.Controllers.ItemsController",
+    "Method": "PostItem",
+    "RelativePath": "api/Items/post",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "item",
+        "Type": "e_commerce_backend.Models.Item",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
