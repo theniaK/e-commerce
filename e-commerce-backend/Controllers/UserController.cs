@@ -2,36 +2,36 @@
 using e_commerce_backend.DTOs;
 using e_commerce_backend.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace e_commerce_backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ItemsController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public ItemsController(ApplicationDbContext context)
+        public UserController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         [HttpPost("post")]
         [ProducesResponseType(204)]
-        public async Task<ActionResult> PostItem(Item item)
+        public async Task<ActionResult> PostUser(User user)
         {
-            ItemDTO ItemDTO = new ItemDTO
+            UserDTO UserDTO = new UserDTO
             {
                 Id = Guid.NewGuid(),
-                Title = item.Title,
-                Description = item.Description,
-                Price = item.Price,
-                Image = item.Image,
-                Category = item.Category,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                PhoneNumber = user.PhoneNumber,
+                EmailAddress = user.EmailAddress,
+                Password = user.Password,
+                Role = user.Role,
             };
 
-            _context.Items.Add(ItemDTO);
+            _context.Users.Add(UserDTO);
             await _context.SaveChangesAsync();
 
             return await Task.FromResult(NoContent());

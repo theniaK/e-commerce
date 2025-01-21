@@ -10,5 +10,6 @@ namespace e_commerce_backend.Context
 
         }
         public DbSet<ItemDTO> Items { get; set; }
+        public DbSet<UserDTO> Users { get; set; }
     }
 }
