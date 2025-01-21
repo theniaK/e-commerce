@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import products from "./products.json";
 import {
   Box,
   Button,
@@ -12,6 +11,7 @@ import {
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import ItemDetailDialogue from "./ItemDetailDialogue";
 import ItemsNullOrEmptyMessage from "./ItemsNullOrEmptyMessage";
+import { Item } from "./Models/Item";
 
 const useStyles = makeStyles(() => ({
   card: {
@@ -81,8 +81,7 @@ export default function Products({
   isSearchTriggered,
 }: props): React.ReactElement {
   const classes = useStyles();
-  const items = products;
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<Item[]>([]);
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -100,19 +99,32 @@ export default function Products({
     if (isSearchTriggered) {
       isSearchTriggered = false;
     }
-    console.log(isSearchTriggered);
   }, [isSearchTriggered]);
 
   useEffect(() => {
-    setData(items);
-  }, [products]);
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://localhost:7231/api/Items/get");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const result = await response.json();
+
+        setData(result);
+      } catch (error) {}
+    };
+
+    fetchData(); // Call the fetch function
+  }, []);
 
   function truncateText(text: any, wordLimit: any) {
-    const words = text.split(" ");
-    if (words.length > wordLimit) {
-      return words.slice(0, wordLimit).join(" ") + "...";
+    if (text !== undefined) {
+      const words = text.split(" ");
+      if (words.length > wordLimit) {
+        return words.slice(0, wordLimit).join(" ") + "...";
+      }
+      return text;
     }
-    return text;
   }
 
   return (
@@ -120,20 +132,19 @@ export default function Products({
       {searchQuery && isSearchTriggered && data ? (
         // If searchQuery is provided and data exists, filter the data
         data?.length > 0 ? (
-          // Filtered data
           data.filter(
             (item) =>
-              item.Title.toLowerCase().startsWith(searchQuery.toLowerCase()) ||
-              item.Title.toLowerCase().includes(searchQuery.toLowerCase())
+              item.title.toLowerCase().startsWith(searchQuery.toLowerCase()) ||
+              item.title.toLowerCase().includes(searchQuery.toLowerCase())
           ).length > 0 ? (
             // If there are matches, render the filtered items
             data
               .filter(
                 (item) =>
-                  item.Title.toLowerCase().startsWith(
-                    searchQuery.toLowerCase()
-                  ) ||
-                  item.Title.toLowerCase().includes(searchQuery.toLowerCase())
+                  item.title
+                    .toLowerCase()
+                    .startsWith(searchQuery.toLowerCase()) ||
+                  item.title.toLowerCase().includes(searchQuery.toLowerCase())
               )
               .map((item) => (
                 <Card key={item.id} className={classes.card}>
@@ -141,7 +152,7 @@ export default function Products({
                     className={classes.cardMedia}
                     component="img"
                     height="140"
-                    image={item.Image}
+                    image={item.image}
                     onClick={() => onCardClick(item)}
                   />
                   <CardContent
@@ -152,7 +163,7 @@ export default function Products({
                         className={classes.styleCategory}
                         component="div"
                       >
-                        {item.Category}
+                        {item.category}
                       </Typography>
                     </div>
                     <div>
@@ -161,7 +172,7 @@ export default function Products({
                         onClick={() => onCardClick(item)}
                         component="div"
                       >
-                        {item.Title}
+                        {item.title}
                       </Typography>
                     </div>
                     <div>
@@ -169,12 +180,12 @@ export default function Products({
                         className={classes.styleDescription}
                         onClick={() => onCardClick(item)}
                       >
-                        {truncateText(item.Description, 18)}
+                        {truncateText(item.description, 18)}
                       </Typography>
                     </div>
                     <Box>
                       <Typography className={classes.stylePrice}>
-                        {item.Price}$
+                        {item.price}$
                       </Typography>
                       <Button className={classes.styleButton}>
                         <ShoppingCartOutlinedIcon />
@@ -201,13 +212,13 @@ export default function Products({
               className={classes.cardMedia}
               component="img"
               height="140"
-              image={item.Image}
+              image={item.image}
               onClick={() => onCardClick(item)}
             />
             <CardContent style={{ paddingBottom: "200px", paddingTop: "10px" }}>
               <div>
                 <Typography className={classes.styleCategory} component="div">
-                  {item.Category}
+                  {item.category}
                 </Typography>
               </div>
               <div>
@@ -216,7 +227,7 @@ export default function Products({
                   onClick={() => onCardClick(item)}
                   component="div"
                 >
-                  {item.Title}
+                  {item.title}
                 </Typography>
               </div>
               <div>
@@ -224,12 +235,12 @@ export default function Products({
                   className={classes.styleDescription}
                   onClick={() => onCardClick(item)}
                 >
-                  {truncateText(item.Description, 18)}
+                  {truncateText(item.description, 18)}
                 </Typography>
               </div>
               <Box>
                 <Typography className={classes.stylePrice}>
-                  {item.Price}$
+                  {item.price}$
                 </Typography>
                 <Button className={classes.styleButton}>
                   <ShoppingCartOutlinedIcon />
