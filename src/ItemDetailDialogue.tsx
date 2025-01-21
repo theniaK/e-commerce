@@ -68,15 +68,15 @@ export default function ItemDetailDialogue({
       <DialogContent className={classes.dialogue}>
         {selectedItem && (
           <div>
-            <img src={selectedItem.Image} className={classes.styleImage} />
+            <img src={selectedItem.image} className={classes.styleImage} />
             <Typography className={classes.styleTitle}>
-              {selectedItem.Title}
+              {selectedItem.title}
             </Typography>
             <Typography className={classes.styleDescription}>
-              {selectedItem.Description}
+              {selectedItem.description}
             </Typography>
             <Typography className={classes.stylePrice}>
-              Price: {selectedItem.Price}$
+              Price: {selectedItem.price}$
             </Typography>
           </div>
         )}
