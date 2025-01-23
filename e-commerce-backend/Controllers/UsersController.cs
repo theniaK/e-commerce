@@ -20,32 +20,84 @@ namespace e_commerce_backend.Controllers
         }
 
         /// <summary>
-        /// Post a user to the DB
+        /// Post user
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="userDto"></param>
         /// <returns></returns>
         [HttpPost("signup")]
+        [ProducesResponseType(200)]
         [ProducesResponseType(204)]
-        public async Task<ActionResult> SignUpUser(User user)
+        public async Task<ActionResult> SignUpUser(UserDTO userDto)
         {
-            UserDTO UserDTO = _mapper.Map<UserDTO>(user);
-            await _context.Users.AddAsync(UserDTO);
-            await _context.SaveChangesAsync();
+            User user = _mapper.Map<User>(userDto);
+            if(userDto != null)
+            {
+                user.Id = Guid.NewGuid();
+                await _context.Users.AddAsync(user);
+                await _context.SaveChangesAsync();
+            }
 
             return await Task.FromResult(NoContent());
         }
 
-        //[HttpPost("signin")]
-        //public IActionResult SignInUser([FromBody] LoginModel model)
-        //{
-        //    var user = _userService.ValidateUser(model.Username, model.Password);
-        //    if (user == null)
-        //    {
-        //        return Unauthorized("Invalid credentials");
-        //    }
+        /// <summary>
+        /// Get a user by their credentials
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns>A user</returns>
+        [HttpGet("signin/{email}/{password}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(204)]
+        public async Task<ActionResult> GetUser(string email, string password)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.EmailAddress == email
+                                                        && u.Password == password);
+            if (user != null)
+            {
+                return await Task.FromResult(Ok(user));
+            }
 
-        //    var token = GenerateJwtToken(user);  // Method to generate a JWT token
-        //    return Ok(new { Token = token });
-        //}
+            return NotFound("User not found");
+        }
+
+        /// <summary>
+        /// Get a user by Id
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns>A user</returns>
+        [HttpGet("get/{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(204)]
+        public async Task<ActionResult> GetUser(Guid id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user != null)
+            {
+                return Ok(user);
+            }
+
+            return NotFound("User not found");
+        }
+
+        /// <summary>
+        /// Delete a user by Id
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        [HttpDelete("delete/{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(204)]
+        public async Task<ActionResult> DeleteUser(Guid id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user != null)
+            {
+                _context.Users.Remove(user);
+                await _context.SaveChangesAsync();
+                return Ok();
+            }
+
+            return NotFound("User not found");
+        }
     }
 }

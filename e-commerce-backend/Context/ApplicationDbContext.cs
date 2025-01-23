@@ -1,4 +1,4 @@
-﻿using e_commerce_backend.DTOs;
+﻿using e_commerce_backend.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace e_commerce_backend.Context
@@ -9,7 +9,7 @@ namespace e_commerce_backend.Context
         {
 
         }
-        public DbSet<ItemDTO> Items { get; set; }
-        public DbSet<UserDTO> Users { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

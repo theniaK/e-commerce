@@ -1,5 +1,4 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using e_commerce_backend.Context;
 using e_commerce_backend.DTOs;
 using e_commerce_backend.Models;
@@ -37,11 +36,17 @@ namespace e_commerce_backend.Controllers
             string json = System.IO.File.ReadAllText(filePath);
             if(!string.IsNullOrEmpty(json))
             {
-                List<ItemDTO> items = JsonConvert.DeserializeObject<List<ItemDTO>>(json);
+                List<Item> items = JsonConvert.DeserializeObject<List<Item>>(json) ?? new List<Item>();
                 if (items !=null && items.Any())
                 {
-                    foreach (ItemDTO item in items)
+                    foreach (Item item in items)
                     {
+                        var savedItem = _context.Items.FirstOrDefault(i => i.Title == item.Title);
+                        if(savedItem != null)
+                        {
+                            continue;
+                        }
+
                         item.Id = Guid.NewGuid();
                         await _context.Items.AddAsync(item);
                         await _context.SaveChangesAsync();
@@ -60,13 +65,13 @@ namespace e_commerce_backend.Controllers
         /// <returns></returns>
         [HttpPost("post")]
         [ProducesResponseType(204)]
-        public async Task<ActionResult> PostItem(Item item)
+        public async Task<ActionResult> PostItem(ItemDTO itemDTO)
         {
-            ItemDTO ItemDTO = _mapper.Map<ItemDTO>(item);
-            if (ItemDTO != null)
+            Item Item = _mapper.Map<Item>(itemDTO);
+            if (Item != null)
             {
-                ItemDTO.Id = Guid.NewGuid();
-                await _context.Items.AddAsync(ItemDTO);
+                Item.Id = Guid.NewGuid();
+                await _context.Items.AddAsync(Item);
                 await _context.SaveChangesAsync();
             }
 
@@ -113,7 +118,7 @@ namespace e_commerce_backend.Controllers
         [ProducesResponseType(204)]
         public async Task<ActionResult> DeleteAllItems()
         {
-            IEnumerable<ItemDTO> items = await _context.Items.ToListAsync();
+            IEnumerable<Item> items = await _context.Items.ToListAsync();
             _context.RemoveRange(items);
             await _context.SaveChangesAsync();
 
@@ -125,10 +130,11 @@ namespace e_commerce_backend.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpDelete("delete/{id}")]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
         public async Task<ActionResult> DeleteItem(Guid id)
         {
-            var item = _context.Items.Find(id);
+            var item = await _context.Items.FindAsync(id);
             if (item == null)
             {
                 return NotFound("Item not found");

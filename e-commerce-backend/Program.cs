@@ -13,11 +13,20 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowLocalhost", policy =>
+    options.AddPolicy("DevCors", policy =>
     {
-        policy.WithOrigins("http://localhost:5173")  // Allow requests from e-commerce front-end
+        policy.WithOrigins("http://localhost:5173")  // Allow requests from a vite / react front-end
               .AllowAnyHeader()
-              .AllowAnyMethod();
+              .AllowAnyMethod()
+              .AllowCredentials();
+    });
+
+    options.AddPolicy("ProdCors", policy =>
+    {
+        policy.WithOrigins("https://test.com")
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
     });
 });
 
@@ -36,9 +45,12 @@ builder.Services.AddCors(options =>
 //        };
 //    });
 //builder.Services.AddAuthorization();
+
+// Configure the PostgresConnection
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection")));
 
+// Configure the Mapper
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 var app = builder.Build();
@@ -46,13 +58,15 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseCors("DevCors");
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
-
-app.UseCors("AllowLocalhost");
+else
+{
+    app.UseCors("ProdCors");
+    app.UseHttpsRedirection();
+}
 
 app.UseAuthorization();
 
