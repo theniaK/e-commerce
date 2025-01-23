@@ -1,9 +1,6 @@
-using AutoMapper;
 using e_commerce_backend.Context;
-using e_commerce_backend.DTOs;
-using e_commerce_backend.Models;
+using e_commerce_backend.Mapper;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +38,8 @@ builder.Services.AddCors(options =>
 //builder.Services.AddAuthorization();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection")));
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 var app = builder.Build();
 

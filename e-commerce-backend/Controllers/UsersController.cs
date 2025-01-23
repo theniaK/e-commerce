@@ -1,4 +1,5 @@
-﻿using e_commerce_backend.Context;
+﻿using AutoMapper;
+using e_commerce_backend.Context;
 using e_commerce_backend.DTOs;
 using e_commerce_backend.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +11,12 @@ namespace e_commerce_backend.Controllers
     public class UsersController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
 
-        public UsersController(ApplicationDbContext context)
+        public UsersController(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -25,25 +28,15 @@ namespace e_commerce_backend.Controllers
         [ProducesResponseType(204)]
         public async Task<ActionResult> SignUpUser(User user)
         {
-            UserDTO UserDTO = new UserDTO
-            {
-                Id = Guid.NewGuid(),
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                PhoneNumber = user.PhoneNumber,
-                EmailAddress = user.EmailAddress,
-                Password = user.Password,
-                Role = user.Role,
-            };
-
-            _context.Users.Add(UserDTO);
+            UserDTO UserDTO = _mapper.Map<UserDTO>(user);
+            await _context.Users.AddAsync(UserDTO);
             await _context.SaveChangesAsync();
 
             return await Task.FromResult(NoContent());
         }
 
-        //[HttpPost("login")]
-        //public IActionResult Login([FromBody] LoginModel model)
+        //[HttpPost("signin")]
+        //public IActionResult SignInUser([FromBody] LoginModel model)
         //{
         //    var user = _userService.ValidateUser(model.Username, model.Password);
         //    if (user == null)

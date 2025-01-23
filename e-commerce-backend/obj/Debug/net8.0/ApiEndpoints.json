@@ -17,6 +17,28 @@
   },
   {
     "ContainingType": "e_commerce_backend.Controllers.ItemsController",
+    "Method": "DeleteItem",
+    "RelativePath": "api/Items/delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "e_commerce_backend.Controllers.ItemsController",
     "Method": "GetItem",
     "RelativePath": "api/Items/get",
     "HttpMethod": "GET",
@@ -31,6 +53,28 @@
           "application/json",
           "text/json"
         ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "e_commerce_backend.Controllers.ItemsController",
+    "Method": "GetItem",
+    "RelativePath": "api/Items/get/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
         "StatusCode": 200
       }
     ]

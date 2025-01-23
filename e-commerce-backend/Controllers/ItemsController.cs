@@ -3,10 +3,8 @@ using AutoMapper;
 using e_commerce_backend.Context;
 using e_commerce_backend.DTOs;
 using e_commerce_backend.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Newtonsoft.Json;
 
 namespace e_commerce_backend.Controllers
@@ -17,15 +15,13 @@ namespace e_commerce_backend.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _env;
+        private readonly IMapper _mapper;
 
-        Mapper mapper = new Mapper(new MapperConfiguration((cfg) => {
-            cfg.CreateMap<Item, ItemDTO>();
-        }));
-
-        public ItemsController(ApplicationDbContext context, IWebHostEnvironment env)
+        public ItemsController(ApplicationDbContext context, IWebHostEnvironment env, IMapper mapper)
         {
             _context = context;
             _env = env;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -34,10 +30,10 @@ namespace e_commerce_backend.Controllers
         /// <returns></returns>
         [HttpPost("post/json")]
         [ProducesResponseType(204)]
-        [ProducesResponseType(500)]
+        [ProducesResponseType(404)]
         public async Task<ActionResult> PostItemsFromJson()
         {
-            var filePath = Path.Combine(_env.ContentRootPath, "ItemsInJson\\products.json");
+            var filePath = Path.Combine(_env.ContentRootPath, "DbSeed\\products.json");
             string json = System.IO.File.ReadAllText(filePath);
             if(!string.IsNullOrEmpty(json))
             {
@@ -47,14 +43,66 @@ namespace e_commerce_backend.Controllers
                     foreach (ItemDTO item in items)
                     {
                         item.Id = Guid.NewGuid();
-                        _context.Items.Add(item);
+                        await _context.Items.AddAsync(item);
                         await _context.SaveChangesAsync();
                     }
                         return await Task.FromResult(NoContent());
                 }
             }
 
-            return StatusCode(500);
+            return NotFound();
+        }
+
+        /// <summary>
+        /// Post individual item
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        [HttpPost("post")]
+        [ProducesResponseType(204)]
+        public async Task<ActionResult> PostItem(Item item)
+        {
+            ItemDTO ItemDTO = _mapper.Map<ItemDTO>(item);
+            if (ItemDTO != null)
+            {
+                ItemDTO.Id = Guid.NewGuid();
+                await _context.Items.AddAsync(ItemDTO);
+                await _context.SaveChangesAsync();
+            }
+
+            return await Task.FromResult(NoContent());
+        }
+
+
+        /// <summary>
+        /// Get all items from the Database
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("get")]
+        //[Authorize]
+        [ProducesResponseType(200)]
+        public async Task<ActionResult<IEnumerable<Item>>> GetItem()
+        {
+            var items = await _context.Items.ToListAsync();
+
+            return Ok(items);
+        }
+
+        /// <summary>
+        /// Gets specific Item
+        /// </summary>
+        /// <returns>The item</returns>
+        [HttpGet("get/{id}")]
+        [ProducesResponseType(200)]
+        public async Task<ActionResult> GetItem(Guid id)
+        {
+            var item = await _context.Items.FindAsync(id);
+            if (item != null)
+            {
+                return Ok(item);
+            }
+
+            return NotFound("Item not found");
         }
 
         /// <summary>
@@ -73,47 +121,22 @@ namespace e_commerce_backend.Controllers
         }
 
         /// <summary>
-        /// Post individual item
+        /// Delete specific Item
         /// </summary>
-        /// <param name="item"></param>
         /// <returns></returns>
-        [HttpPost("post")]
-        [ProducesResponseType(204)]
-        public async Task<ActionResult> PostItem(Item item)
+        [HttpDelete("delete/{id}")]
+        [ProducesResponseType(200)]
+        public async Task<ActionResult> DeleteItem(Guid id)
         {
-            //ItemDTO ItemDTO = new ItemDTO
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Title = item.Title,
-            //    Description = item.Description,
-            //    Price = item.Price,
-            //    Image = item.Image,
-            //    Category = item.Category,
-            //};
-
-            ItemDTO ItemDTO = mapper.Map<ItemDTO>(item);
-            if(ItemDTO != null)
+            var item = _context.Items.Find(id);
+            if (item == null)
             {
-                ItemDTO.Id = Guid.NewGuid();
-                _context.Items.Add(ItemDTO);
-                await _context.SaveChangesAsync();
+                return NotFound("Item not found");
             }
 
-            return await Task.FromResult(NoContent());
-        }
-
-        /// <summary>
-        /// Get all items from the Database
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("get")]
-        //[Authorize]
-        [ProducesResponseType(200)]
-        public async Task<ActionResult<IEnumerable<Item>>> GetItem()
-        {
-            var items = await _context.Items.ToListAsync();
-
-            return Ok(items);
+            _context.Remove(item);
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
     }
 }
