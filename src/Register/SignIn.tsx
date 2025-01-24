@@ -113,12 +113,8 @@ export default function SignIn(): React.ReactElement {
       } catch (error) {
         console.error("Error during user registration:", error);
       }
-
-      /*     setFirstName("");
-        setLastName("");
-        setEmail("");
-        setPassword("");
-        setPasswordConfirm(""); */
+      setEmail("");
+      setPassword("");
     }
   }
 
@@ -162,6 +158,7 @@ export default function SignIn(): React.ReactElement {
               onBlur={handleBlur}
               onChange={handleEmailInputChange}
               className={classes.textField}
+              value={email}
             />
           </div>
           {isValidEmail === false && isFocused && (
@@ -178,6 +175,7 @@ export default function SignIn(): React.ReactElement {
               required={true}
               onChange={handlePasswordInputChange}
               className={classes.textField}
+              value={password}
             />
           </div>
           <div>

@@ -51,7 +51,6 @@ export default function SignUp(): React.ReactElement {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [isValidEmail, setIsValidEmail] = useState(false);
-  const [userExists, setUserExists] = useState(false);
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const [isFocused, setIsFocused] = useState(false);
   const [emailExists, setEmailExists] = useState(false);
@@ -138,11 +137,12 @@ export default function SignUp(): React.ReactElement {
       } catch (error) {
         console.error("Error during user registration:", error);
       }
-      /*     setFirstName("");
+
+      setFirstName("");
       setLastName("");
       setEmail("");
       setPassword("");
-      setPasswordConfirm(""); */
+      setPasswordConfirm("");
     }
   }
 
@@ -171,6 +171,7 @@ export default function SignUp(): React.ReactElement {
               required={true}
               className={classes.textField}
               onChange={handleFirstNameInputChange}
+              value={firstName}
             />
           </div>
           <div>
@@ -181,6 +182,7 @@ export default function SignUp(): React.ReactElement {
               required={true}
               className={classes.textField}
               onChange={handleLastNameInputChange}
+              value={lastName}
             />
           </div>
           <div>
@@ -210,6 +212,7 @@ export default function SignUp(): React.ReactElement {
               required={true}
               onChange={handlePasswordInputChange}
               className={classes.textField}
+              value={password}
             />
           </div>
           <div>
@@ -221,6 +224,7 @@ export default function SignUp(): React.ReactElement {
               required={true}
               onChange={handlePasswordConfirmInputChange}
               className={classes.textField}
+              value={passwordConfirm}
             />
           </div>
           {!checkPasswordMatch() && (
