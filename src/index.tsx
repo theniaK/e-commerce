@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import SignIn from "./SignIn"; // Your SignIn component
-import SignUp from "./Signup";
+import SignIn from "./Register/SignIn"; // Your SignIn component
+import SignUp from "./Register/Signup";
 
 const Index = () => {
   return (

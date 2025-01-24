@@ -2,16 +2,17 @@ import {
   Button,
   FormControl,
   FormHelperText,
-  Link,
   makeStyles,
   TextField,
   Typography,
 } from "@material-ui/core";
 import React, { ChangeEvent, useState } from "react";
-import { User } from "./Models/User";
+import { UserCredentials } from "../Models/UserCredentials";
+import { User } from "../Models/User";
+import { data } from "react-router-dom";
 const useStyles = makeStyles(() => ({
   form: {
-    height: "690px",
+    height: "600px",
     width: "650px",
     backgroundColor: "#F8F8F8",
     boxShadow: "0 4px 8px rgba(169, 169, 169, 0.5)",
@@ -32,7 +33,7 @@ const useStyles = makeStyles(() => ({
   },
   textField: {
     width: "50%",
-    marginTop: "16px",
+    marginTop: "25px",
     boxShadow: "0 2px 4px rgba(169, 169, 169, 0.5)",
   },
   button: {
@@ -43,24 +44,15 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function SignUp(): React.ReactElement {
+export default function SignIn(): React.ReactElement {
   const classes = useStyles();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [email, setEmail] = useState("");
   const [isValidEmail, setIsValidEmail] = useState(false);
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const [isFocused, setIsFocused] = useState(false);
-
-  function handleFirstNameInputChange(event: ChangeEvent<HTMLInputElement>) {
-    setFirstName(event.target.value);
-  }
-
-  function handleLastNameInputChange(event: ChangeEvent<HTMLInputElement>) {
-    setLastName(event.target.value);
-  }
+  const [userExists, setUserExists] = useState(true);
+  const [dataResponse, setDataResponse] = useState<any>();
 
   function handleEmailInputChange(event: ChangeEvent<HTMLInputElement>) {
     setEmail(event.target.value);
@@ -75,12 +67,6 @@ export default function SignUp(): React.ReactElement {
     setPassword(event.target.value);
   }
 
-  function handlePasswordConfirmInputChange(
-    event: ChangeEvent<HTMLInputElement>
-  ) {
-    setPasswordConfirm(event.target.value);
-  }
-
   const handleFocus = () => {
     setIsFocused(true);
   };
@@ -89,25 +75,15 @@ export default function SignUp(): React.ReactElement {
     setIsFocused(false);
   };
 
-  function checkPasswordMatch() {
-    return password === passwordConfirm;
-  }
-
-  async function registerUser() {
-    if (!firstName || !lastName || !email || !password || !passwordConfirm) {
+  async function logInUser() {
+    if (!email || !password) {
       alert("Please fill in all fields!");
-    } else if (password != passwordConfirm) {
-      alert("Passwords do not match!");
     } else if (!isValidEmail) {
       alert("Email is not valid!");
     } else {
-      const newUser: User = {
-        id: "",
-        firstName: firstName,
-        lastName: lastName,
+      const userCredentials: UserCredentials = {
         emailAddress: email,
         password: password,
-        role: "Client",
       };
 
       const requestOptions: RequestInit = {
@@ -115,33 +91,48 @@ export default function SignUp(): React.ReactElement {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newUser),
+        body: JSON.stringify(userCredentials),
       };
 
       try {
         const response = await fetch(
-          "https://localhost:7231/api/Users/signup",
+          "https://localhost:7231/api/Users/signin",
           requestOptions
         );
 
         if (!response.ok) {
           // Handle server-side errors
-          const errorData = await response.json();
-          alert(`Error: ${errorData.message}`);
+          //alert("There is no user with this email address or password!");
+          setUserExists(false);
         } else {
           // Handle successful response
           const data = await response.json();
-          console.log("Response Data:", data);
+          setUserExists(true);
+          setDataResponse(data);
         }
       } catch (error) {
         console.error("Error during user registration:", error);
       }
+
       /*     setFirstName("");
-      setLastName("");
-      setEmail("");
-      setPassword("");
-      setPasswordConfirm(""); */
+        setLastName("");
+        setEmail("");
+        setPassword("");
+        setPasswordConfirm(""); */
     }
+  }
+
+  if (dataResponse) {
+    const userResponse: User = {
+      id: dataResponse.id,
+      firstName: dataResponse.firstName,
+      lastName: dataResponse.lastName,
+      emailAddress: dataResponse.emailAddress,
+      password: dataResponse.password,
+      role: dataResponse.role,
+    };
+
+    console.log("UserResponse", userResponse);
   }
 
   return (
@@ -155,32 +146,12 @@ export default function SignUp(): React.ReactElement {
           width="150px"
         />
         <Typography variant="h3" className={classes.title}>
-          Sign Up
+          Sign In
         </Typography>
         <Typography className={classes.secondTitle}>
-          Create an account or <Link href="/signin">Sign in</Link>
+          Log in to your account
         </Typography>
         <div style={{ marginTop: "40px" }}>
-          <div>
-            <TextField
-              label="First Name"
-              variant="outlined"
-              color="secondary"
-              required={true}
-              className={classes.textField}
-              onChange={handleFirstNameInputChange}
-            />
-          </div>
-          <div>
-            <TextField
-              label="Last Name"
-              variant="outlined"
-              color="secondary"
-              required={true}
-              className={classes.textField}
-              onChange={handleLastNameInputChange}
-            />
-          </div>
           <div>
             <TextField
               label="Email"
@@ -190,7 +161,6 @@ export default function SignUp(): React.ReactElement {
               onFocus={handleFocus}
               onBlur={handleBlur}
               onChange={handleEmailInputChange}
-              value={email}
               className={classes.textField}
             />
           </div>
@@ -211,26 +181,15 @@ export default function SignUp(): React.ReactElement {
             />
           </div>
           <div>
-            <TextField
-              label="Password Confirmation"
-              variant="outlined"
-              color="secondary"
-              type="password"
-              required={true}
-              onChange={handlePasswordConfirmInputChange}
-              className={classes.textField}
-            />
-          </div>
-          {!checkPasswordMatch() && (
-            <FormHelperText style={{ paddingLeft: "170px" }} error>
-              Passwords don't match!
-            </FormHelperText>
-          )}
-          <div>
-            <Button className={classes.button} onClick={registerUser}>
-              Sign Up
+            <Button className={classes.button} onClick={logInUser}>
+              Sign In
             </Button>
           </div>
+          {!userExists && (
+            <FormHelperText style={{ paddingLeft: "170px", color: "red" }}>
+              Incorect email or password
+            </FormHelperText>
+          )}
         </div>
       </FormControl>
     </div>

@@ -3,8 +3,9 @@ import { makeStyles } from "@material-ui/core";
 import Header from "./Header";
 import Products from "./Products";
 import { useState } from "react";
-import SignUp from "./Signup";
-import SignIn from "./SignIn";
+import SignIn from "./Register/SignIn";
+import SignUp from "./Register/Signup";
+//import SignUp from "./Register/Signup";
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -31,7 +32,7 @@ function App() {
   return (
     <div className={classes.container}>
       {!isSignUp ? (
-        <SignIn />
+        <SignUp />
       ) : (
         <div>
           <Header

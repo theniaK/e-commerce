@@ -14,13 +14,15 @@ namespace e_commerce_backend.Controllers
     public class UsersController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        private readonly IBaseRepository<User> _userRepository;
+        private readonly IBaseRepository<User> _baseRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
 
-        public UsersController(ApplicationDbContext context, IMapper mapper, IBaseRepository<User> userRepository)
+        public UsersController(ApplicationDbContext context, IMapper mapper, IBaseRepository<User> baseRepository, IUserRepository userRepository)
         {
             _context = context;
             _mapper = mapper;
+            _baseRepository = baseRepository;
             _userRepository = userRepository;
         }
 
@@ -40,7 +42,12 @@ namespace e_commerce_backend.Controllers
                 return BadRequest();
             }
 
-            await _userRepository.AddEntity(user);
+            var isUser = await _userRepository.CheckEmailAdress(user.EmailAddress);
+            if (isUser)
+            {
+                return BadRequest();
+            }
+            await _baseRepository.AddEntity(user);
             return Ok(new { message = "User successfully registered", userId = user.Id });
         }
 
@@ -61,7 +68,7 @@ namespace e_commerce_backend.Controllers
                 return Ok(user);
             }
 
-            return NotFound("User not found");
+            return NotFound();
         }
 
         /// <summary>
@@ -74,7 +81,7 @@ namespace e_commerce_backend.Controllers
         [ProducesResponseType(204)]
         public async Task<ActionResult> GetOneUser(Guid id)
         {
-            var user = await _userRepository.GetEntity(id);
+            var user = await _baseRepository.GetEntity(id);
             if (user != null)
             {
                 return Ok(user);
@@ -92,7 +99,7 @@ namespace e_commerce_backend.Controllers
         [ProducesResponseType(204)]
         public async Task<ActionResult> DeleteOneUser(Guid id)
         {
-            await _userRepository.DeleteEntity(id);
+            await _baseRepository.DeleteEntity(id);
             return NotFound();
         }
 
@@ -104,7 +111,7 @@ namespace e_commerce_backend.Controllers
         [ProducesResponseType(204)]
         public async Task<ActionResult> DeleteAllUsers()
         {
-            await _userRepository.DeleteAllEntities();
+            await _baseRepository.DeleteAllEntities();
             return NoContent();
         }
     }
