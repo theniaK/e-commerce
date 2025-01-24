@@ -12,6 +12,7 @@ type props = {
   selectedItem: any;
   openDialogue: boolean;
   handleCloseDialog: () => void;
+  formatPrice: (price: number) => string;
 };
 
 const useStyles = makeStyles(() => ({
@@ -60,6 +61,7 @@ export default function ItemDetailDialogue({
   selectedItem,
   openDialogue,
   handleCloseDialog,
+  formatPrice,
 }: props): React.ReactElement {
   var classes = useStyles();
 
@@ -76,7 +78,7 @@ export default function ItemDetailDialogue({
               {selectedItem.description}
             </Typography>
             <Typography className={classes.stylePrice}>
-              Price: {selectedItem.price}$
+              Price: {formatPrice(selectedItem.price)}$
             </Typography>
           </div>
         )}

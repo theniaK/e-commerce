@@ -127,6 +127,13 @@ export default function Products({
     }
   }
 
+  const formatPrice = (price: number) => {
+    if (!price.toString().includes(".")) {
+      return `${price}.00`;
+    }
+    return price.toFixed(2); // Otherwise, just ensure it's formatted to two decimals
+  };
+
   return (
     <div>
       {searchQuery && isSearchTriggered && data ? (
@@ -185,7 +192,7 @@ export default function Products({
                     </div>
                     <Box>
                       <Typography className={classes.stylePrice}>
-                        {item.price}$
+                        {formatPrice(item.price)}$
                       </Typography>
                       <Button className={classes.styleButton}>
                         <ShoppingCartOutlinedIcon />
@@ -240,7 +247,7 @@ export default function Products({
               </div>
               <Box>
                 <Typography className={classes.stylePrice}>
-                  {item.price}$
+                  {formatPrice(item.price)}$
                 </Typography>
                 <Button className={classes.styleButton}>
                   <ShoppingCartOutlinedIcon />
@@ -258,6 +265,7 @@ export default function Products({
         selectedItem={selectedItem}
         openDialogue={openDialog}
         handleCloseDialog={handleCloseDialog}
+        formatPrice={formatPrice}
       />
     </div>
   );
