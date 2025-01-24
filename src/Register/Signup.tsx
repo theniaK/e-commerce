@@ -239,7 +239,7 @@ export default function SignUp(): React.ReactElement {
           </div>
           {emailExists && (
             <FormHelperText style={{ paddingLeft: "170px", color: "red" }}>
-              Email exists
+              Email already exists
             </FormHelperText>
           )}
         </div>
