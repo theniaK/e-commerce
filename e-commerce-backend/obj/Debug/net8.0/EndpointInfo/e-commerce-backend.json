@@ -406,10 +406,6 @@
           "password": {
             "type": "string",
             "nullable": true
-          },
-          "passwordConfirm": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false

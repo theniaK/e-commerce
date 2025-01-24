@@ -96,6 +96,10 @@ export default function SignUp(): React.ReactElement {
   async function registerUser() {
     if (!firstName || !lastName || !email || !password || !passwordConfirm) {
       alert("Please fill in all fields!");
+    } else if (password != passwordConfirm) {
+      alert("Passwords do not match!");
+    } else if (!isValidEmail) {
+      alert("Email is not valid!");
     } else {
       const newUser: User = {
         id: "",
@@ -103,7 +107,6 @@ export default function SignUp(): React.ReactElement {
         lastName: lastName,
         emailAddress: email,
         password: password,
-        passwordConfirm: passwordConfirm,
         role: "Client",
       };
 
@@ -133,7 +136,6 @@ export default function SignUp(): React.ReactElement {
       } catch (error) {
         console.error("Error during user registration:", error);
       }
-
       /*     setFirstName("");
       setLastName("");
       setEmail("");

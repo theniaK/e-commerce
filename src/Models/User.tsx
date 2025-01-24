@@ -4,6 +4,5 @@ export interface User {
   lastName: string;
   emailAddress: string;
   password: string;
-  passwordConfirm: string;
   role: string;
 }

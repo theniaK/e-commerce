@@ -8,6 +8,8 @@ import {
   Typography,
 } from "@material-ui/core";
 import React, { ChangeEvent, ChangeEventHandler, useState } from "react";
+import { UserCredentials } from "./Models/UserCredentials";
+import { User } from "./Models/User";
 const useStyles = makeStyles(() => ({
   form: {
     height: "600px",
@@ -49,6 +51,7 @@ export default function SignIn(): React.ReactElement {
   const [isValidEmail, setIsValidEmail] = useState(false);
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const [isFocused, setIsFocused] = useState(false);
+  const [dataResponse, setDataResponse] = useState<any>();
 
   function handleEmailInputChange(event: ChangeEvent<HTMLInputElement>) {
     setEmail(event.target.value);
@@ -70,6 +73,64 @@ export default function SignIn(): React.ReactElement {
   const handleBlur = () => {
     setIsFocused(false);
   };
+
+  async function logInUser() {
+    if (!email || !password) {
+      alert("Please fill in all fields!");
+    } else if (!isValidEmail) {
+      alert("Email is not valid!");
+    } else {
+      const userCredentials: UserCredentials = {
+        emailAddress: email,
+        password: password,
+      };
+
+      const requestOptions: RequestInit = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userCredentials),
+      };
+
+      try {
+        const response = await fetch(
+          "https://localhost:7231/api/Users/signin",
+          requestOptions
+        );
+
+        if (!response.ok) {
+          // Handle server-side errors
+          const errorData = await response.json();
+          alert(`Error: ${errorData.message}`);
+        } else {
+          // Handle successful response
+          const data = await response.json();
+          //console.log("Response Data:", data);
+          setDataResponse(data);
+        }
+      } catch (error) {
+        console.error("Error during user registration:", error);
+      }
+
+      /*     setFirstName("");
+        setLastName("");
+        setEmail("");
+        setPassword("");
+        setPasswordConfirm(""); */
+    }
+  }
+
+  const userResponse: User = {
+    id: dataResponse.id,
+    firstName: dataResponse.firstName,
+    lastName: dataResponse.lastName,
+    emailAddress: dataResponse.emailAddress,
+    password: dataResponse.password,
+    role: dataResponse.role,
+  };
+
+  console.log("UserResponse", userResponse);
   return (
     <div>
       <FormControl className={classes.form}>
@@ -121,7 +182,9 @@ export default function SignIn(): React.ReactElement {
             />
           </div>
           <div>
-            <Button className={classes.button}>Sign In</Button>
+            <Button className={classes.button} onClick={logInUser}>
+              Sign In
+            </Button>
           </div>
         </div>
       </FormControl>

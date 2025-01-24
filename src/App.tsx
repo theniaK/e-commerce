@@ -31,7 +31,7 @@ function App() {
   return (
     <div className={classes.container}>
       {!isSignUp ? (
-        <SignUp />
+        <SignIn />
       ) : (
         <div>
           <Header
