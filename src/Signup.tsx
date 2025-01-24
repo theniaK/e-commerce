@@ -94,48 +94,52 @@ export default function SignUp(): React.ReactElement {
   }
 
   async function registerUser() {
-    const newUser: User = {
-      id: "",
-      firstName: firstName,
-      lastName: lastName,
-      emailAddress: email,
-      password: password,
-      passwordConfirm: passwordConfirm,
-      role: "Client",
-    };
+    if (!firstName || !lastName || !email || !password || !passwordConfirm) {
+      alert("Please fill in all fields!");
+    } else {
+      const newUser: User = {
+        id: "",
+        firstName: firstName,
+        lastName: lastName,
+        emailAddress: email,
+        password: password,
+        passwordConfirm: passwordConfirm,
+        role: "Client",
+      };
 
-    const requestOptions: RequestInit = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newUser),
-    };
+      const requestOptions: RequestInit = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newUser),
+      };
 
-    try {
-      const response = await fetch(
-        "https://localhost:7231/api/Users/signup",
-        requestOptions
-      );
+      try {
+        const response = await fetch(
+          "https://localhost:7231/api/Users/signup",
+          requestOptions
+        );
 
-      if (!response.ok) {
-        // Handle server-side errors
-        const errorData = await response.json();
-        alert(`Error: ${errorData.message}`);
-      } else {
-        // Handle successful response
-        const data = await response.json();
-        console.log("Response Data:", data);
+        if (!response.ok) {
+          // Handle server-side errors
+          const errorData = await response.json();
+          alert(`Error: ${errorData.message}`);
+        } else {
+          // Handle successful response
+          const data = await response.json();
+          console.log("Response Data:", data);
+        }
+      } catch (error) {
+        console.error("Error during user registration:", error);
       }
-    } catch (error) {
-      console.error("Error during user registration:", error);
-    }
 
-    /*     setFirstName("");
-    setLastName("");
-    setEmail("");
-    setPassword("");
-    setPasswordConfirm(""); */
+      /*     setFirstName("");
+      setLastName("");
+      setEmail("");
+      setPassword("");
+      setPasswordConfirm(""); */
+    }
   }
 
   return (
