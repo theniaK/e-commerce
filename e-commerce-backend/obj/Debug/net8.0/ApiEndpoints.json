@@ -17,7 +17,7 @@
   },
   {
     "ContainingType": "e_commerce_backend.Controllers.ItemsController",
-    "Method": "DeleteItem",
+    "Method": "DeleteOneItem",
     "RelativePath": "api/Items/delete/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
@@ -34,21 +34,12 @@
         "Type": "System.Void",
         "MediaTypes": [],
         "StatusCode": 204
-      },
-      {
-        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 404
       }
     ]
   },
   {
     "ContainingType": "e_commerce_backend.Controllers.ItemsController",
-    "Method": "GetItem",
+    "Method": "GetAllItems",
     "RelativePath": "api/Items/get",
     "HttpMethod": "GET",
     "IsController": true,
@@ -68,7 +59,7 @@
   },
   {
     "ContainingType": "e_commerce_backend.Controllers.ItemsController",
-    "Method": "GetItem",
+    "Method": "GetOneItem",
     "RelativePath": "api/Items/get/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -90,7 +81,7 @@
   },
   {
     "ContainingType": "e_commerce_backend.Controllers.ItemsController",
-    "Method": "PostItem",
+    "Method": "PostOneItem",
     "RelativePath": "api/Items/post",
     "HttpMethod": "POST",
     "IsController": true,
@@ -112,7 +103,7 @@
   },
   {
     "ContainingType": "e_commerce_backend.Controllers.ItemsController",
-    "Method": "PostItemsFromJson",
+    "Method": "SeedItemsFromJson",
     "RelativePath": "api/Items/post/json",
     "HttpMethod": "POST",
     "IsController": true,
@@ -137,7 +128,23 @@
   },
   {
     "ContainingType": "e_commerce_backend.Controllers.UsersController",
-    "Method": "DeleteUser",
+    "Method": "DeleteAllUsers",
+    "RelativePath": "api/Users/delete",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 204
+      }
+    ]
+  },
+  {
+    "ContainingType": "e_commerce_backend.Controllers.UsersController",
+    "Method": "DeleteOneUser",
     "RelativePath": "api/Users/delete/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
@@ -153,18 +160,13 @@
       {
         "Type": "System.Void",
         "MediaTypes": [],
-        "StatusCode": 200
-      },
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
         "StatusCode": 204
       }
     ]
   },
   {
     "ContainingType": "e_commerce_backend.Controllers.UsersController",
-    "Method": "GetUser",
+    "Method": "GetOneUser",
     "RelativePath": "api/Users/get/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -191,20 +193,15 @@
   },
   {
     "ContainingType": "e_commerce_backend.Controllers.UsersController",
-    "Method": "GetUser",
-    "RelativePath": "api/Users/signin/{email}/{password}",
-    "HttpMethod": "GET",
+    "Method": "SignInUser",
+    "RelativePath": "api/Users/signin",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "email",
-        "Type": "System.String",
-        "IsRequired": true
-      },
-      {
-        "Name": "password",
-        "Type": "System.String",
+        "Name": "userCred",
+        "Type": "e_commerce_backend.DTOs.UserCredentialsDTO",
         "IsRequired": true
       }
     ],
@@ -239,12 +236,16 @@
       {
         "Type": "System.Void",
         "MediaTypes": [],
-        "StatusCode": 200
+        "StatusCode": 204
       },
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 204
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
       }
     ]
   }

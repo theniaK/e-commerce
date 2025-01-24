@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace e_commerce_backend.DTOs
+﻿namespace e_commerce_backend.DTOs
 {
     public class ItemDTO
     {

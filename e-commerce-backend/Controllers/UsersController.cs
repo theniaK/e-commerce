@@ -1,7 +1,9 @@
-﻿using AutoMapper;
+﻿using System.Reflection.Metadata.Ecma335;
+using AutoMapper;
 using e_commerce_backend.Context;
 using e_commerce_backend.DTOs;
 using e_commerce_backend.Models;
+using e_commerce_backend.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,12 +14,14 @@ namespace e_commerce_backend.Controllers
     public class UsersController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly IBaseRepository<User> _userRepository;
         private readonly IMapper _mapper;
 
-        public UsersController(ApplicationDbContext context, IMapper mapper)
+        public UsersController(ApplicationDbContext context, IMapper mapper, IBaseRepository<User> userRepository)
         {
             _context = context;
             _mapper = mapper;
+            _userRepository = userRepository;
         }
 
         /// <summary>
@@ -26,19 +30,18 @@ namespace e_commerce_backend.Controllers
         /// <param name="userDto"></param>
         /// <returns></returns>
         [HttpPost("signup")]
-        [ProducesResponseType(200)]
         [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
         public async Task<ActionResult> SignUpUser(UserDTO userDto)
         {
             var user = _mapper.Map<User>(userDto);
-            if(userDto != null)
+            if (user == null) 
             {
-                user.Id = Guid.NewGuid();
-                await _context.Users.AddAsync(user);
-                await _context.SaveChangesAsync();
+                return BadRequest();
             }
 
-            return NoContent();
+            await _userRepository.AddEntity(user);
+            return Ok(new { message = "User successfully registered", userId = user.Id });
         }
 
         /// <summary>
@@ -46,13 +49,13 @@ namespace e_commerce_backend.Controllers
         /// </summary>
         /// <param name="user"></param>
         /// <returns>A user</returns>
-        [HttpGet("signin/{email}/{password}")]
+        [HttpPost("signin")]
         [ProducesResponseType(200)]
         [ProducesResponseType(204)]
-        public async Task<ActionResult> GetUser(string email, string password)
+        public async Task<ActionResult> SignInUser(UserCredentialsDTO userCred)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.EmailAddress == email
-                                                                  && u.Password == password);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.EmailAddress == userCred.EmailAddress
+                                                                  && u.Password == userCred.Password);
             if (user != null)
             {
                 return Ok(user);
@@ -62,16 +65,16 @@ namespace e_commerce_backend.Controllers
         }
 
         /// <summary>
-        /// Get a user by Id
+        /// Get a user
         /// </summary>
         /// <param name="user"></param>
         /// <returns>A user</returns>
         [HttpGet("get/{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(204)]
-        public async Task<ActionResult> GetUser(Guid id)
+        public async Task<ActionResult> GetOneUser(Guid id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user = await _userRepository.GetEntity(id);
             if (user != null)
             {
                 return Ok(user);
@@ -81,24 +84,28 @@ namespace e_commerce_backend.Controllers
         }
 
         /// <summary>
-        /// Delete a user by Id
+        /// Delete a user
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
         [HttpDelete("delete/{id}")]
-        [ProducesResponseType(200)]
         [ProducesResponseType(204)]
-        public async Task<ActionResult> DeleteUser(Guid id)
+        public async Task<ActionResult> DeleteOneUser(Guid id)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user != null)
-            {
-                _context.Users.Remove(user);
-                await _context.SaveChangesAsync();
-                return Ok();
-            }
+            await _userRepository.DeleteEntity(id);
+            return NotFound();
+        }
 
-            return NotFound("User not found");
+        /// <summary>
+        /// Delete all users
+        /// </summary>
+        /// <returns></returns>
+        [HttpDelete("delete")]
+        [ProducesResponseType(204)]
+        public async Task<ActionResult> DeleteAllUsers()
+        {
+            await _userRepository.DeleteAllEntities();
+            return NoContent();
         }
     }
 }

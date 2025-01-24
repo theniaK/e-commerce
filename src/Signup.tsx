@@ -8,9 +8,10 @@ import {
   Typography,
 } from "@material-ui/core";
 import React, { ChangeEvent, useState } from "react";
+import { User } from "./Models/User";
 const useStyles = makeStyles(() => ({
   form: {
-    height: "650px",
+    height: "690px",
     width: "650px",
     backgroundColor: "#F8F8F8",
     boxShadow: "0 4px 8px rgba(169, 169, 169, 0.5)",
@@ -31,7 +32,7 @@ const useStyles = makeStyles(() => ({
   },
   textField: {
     width: "50%",
-    marginTop: "20px",
+    marginTop: "16px",
     boxShadow: "0 2px 4px rgba(169, 169, 169, 0.5)",
   },
   button: {
@@ -44,11 +45,22 @@ const useStyles = makeStyles(() => ({
 
 export default function SignUp(): React.ReactElement {
   const classes = useStyles();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const [isValidEmail, setIsValidEmail] = useState(false);
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const [isFocused, setIsFocused] = useState(false);
+
+  function handleFirstNameInputChange(event: ChangeEvent<HTMLInputElement>) {
+    setFirstName(event.target.value);
+  }
+
+  function handleLastNameInputChange(event: ChangeEvent<HTMLInputElement>) {
+    setLastName(event.target.value);
+  }
 
   function handleEmailInputChange(event: ChangeEvent<HTMLInputElement>) {
     setEmail(event.target.value);
@@ -63,6 +75,12 @@ export default function SignUp(): React.ReactElement {
     setPassword(event.target.value);
   }
 
+  function handlePasswordConfirmInputChange(
+    event: ChangeEvent<HTMLInputElement>
+  ) {
+    setPasswordConfirm(event.target.value);
+  }
+
   const handleFocus = () => {
     setIsFocused(true);
   };
@@ -70,6 +88,56 @@ export default function SignUp(): React.ReactElement {
   const handleBlur = () => {
     setIsFocused(false);
   };
+
+  function checkPasswordMatch() {
+    return password === passwordConfirm;
+  }
+
+  async function registerUser() {
+    const newUser: User = {
+      id: "",
+      firstName: firstName,
+      lastName: lastName,
+      emailAddress: email,
+      password: password,
+      passwordConfirm: passwordConfirm,
+      role: "Client",
+    };
+
+    const requestOptions: RequestInit = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+    };
+
+    try {
+      const response = await fetch(
+        "https://localhost:7231/api/Users/signup",
+        requestOptions
+      );
+
+      if (!response.ok) {
+        // Handle server-side errors
+        const errorData = await response.json();
+        alert(`Error: ${errorData.message}`);
+      } else {
+        // Handle successful response
+        const data = await response.json();
+        console.log("Response Data:", data);
+      }
+    } catch (error) {
+      console.error("Error during user registration:", error);
+    }
+
+    /*     setFirstName("");
+    setLastName("");
+    setEmail("");
+    setPassword("");
+    setPasswordConfirm(""); */
+  }
+
   return (
     <div>
       <FormControl className={classes.form}>
@@ -94,6 +162,7 @@ export default function SignUp(): React.ReactElement {
               color="secondary"
               required={true}
               className={classes.textField}
+              onChange={handleFirstNameInputChange}
             />
           </div>
           <div>
@@ -103,6 +172,7 @@ export default function SignUp(): React.ReactElement {
               color="secondary"
               required={true}
               className={classes.textField}
+              onChange={handleLastNameInputChange}
             />
           </div>
           <div>
@@ -114,6 +184,7 @@ export default function SignUp(): React.ReactElement {
               onFocus={handleFocus}
               onBlur={handleBlur}
               onChange={handleEmailInputChange}
+              value={email}
               className={classes.textField}
             />
           </div>
@@ -134,7 +205,25 @@ export default function SignUp(): React.ReactElement {
             />
           </div>
           <div>
-            <Button className={classes.button}>Sign Up</Button>
+            <TextField
+              label="Password Confirmation"
+              variant="outlined"
+              color="secondary"
+              type="password"
+              required={true}
+              onChange={handlePasswordConfirmInputChange}
+              className={classes.textField}
+            />
+          </div>
+          {!checkPasswordMatch() && (
+            <FormHelperText style={{ paddingLeft: "170px" }} error>
+              Passwords don't match!
+            </FormHelperText>
+          )}
+          <div>
+            <Button className={classes.button} onClick={registerUser}>
+              Sign Up
+            </Button>
           </div>
         </div>
       </FormControl>

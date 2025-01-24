@@ -30,8 +30,8 @@ function App() {
 
   return (
     <div className={classes.container}>
-      {isSignUp ? (
-        <SignIn />
+      {!isSignUp ? (
+        <SignUp />
       ) : (
         <div>
           <Header

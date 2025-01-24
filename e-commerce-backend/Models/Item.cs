@@ -1,13 +1,8 @@
 ﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using e_commerce_backend.Enums;
-
 namespace e_commerce_backend.Models
 {
-    public class Item
+    public class Item : BaseEntity
     {
-        [Key]
-        public Guid Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public double Price { get; set; }

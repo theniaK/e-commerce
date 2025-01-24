@@ -10,7 +10,7 @@ import {
 import React, { ChangeEvent, ChangeEventHandler, useState } from "react";
 const useStyles = makeStyles(() => ({
   form: {
-    height: "650px",
+    height: "600px",
     width: "650px",
     backgroundColor: "#F8F8F8",
     boxShadow: "0 4px 8px rgba(169, 169, 169, 0.5)",
@@ -31,7 +31,7 @@ const useStyles = makeStyles(() => ({
   },
   textField: {
     width: "50%",
-    marginTop: "20px",
+    marginTop: "25px",
     boxShadow: "0 2px 4px rgba(169, 169, 169, 0.5)",
   },
   button: {
