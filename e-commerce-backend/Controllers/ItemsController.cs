@@ -51,7 +51,7 @@ namespace e_commerce_backend.Controllers
                         await _context.Items.AddAsync(item);
                         await _context.SaveChangesAsync();
                     }
-                        return await Task.FromResult(NoContent());
+                        return NoContent();
                 }
             }
 
@@ -67,15 +67,15 @@ namespace e_commerce_backend.Controllers
         [ProducesResponseType(204)]
         public async Task<ActionResult> PostItem(ItemDTO itemDTO)
         {
-            Item Item = _mapper.Map<Item>(itemDTO);
-            if (Item != null)
+            var item = _mapper.Map<Item>(itemDTO);
+            if (item != null)
             {
-                Item.Id = Guid.NewGuid();
-                await _context.Items.AddAsync(Item);
+                item.Id = Guid.NewGuid();
+                await _context.Items.AddAsync(item);
                 await _context.SaveChangesAsync();
             }
 
-            return await Task.FromResult(NoContent());
+            return NoContent();
         }
 
 

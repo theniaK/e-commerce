@@ -3,6 +3,7 @@ using e_commerce_backend.Context;
 using e_commerce_backend.DTOs;
 using e_commerce_backend.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace e_commerce_backend.Controllers
 {
@@ -29,7 +30,7 @@ namespace e_commerce_backend.Controllers
         [ProducesResponseType(204)]
         public async Task<ActionResult> SignUpUser(UserDTO userDto)
         {
-            User user = _mapper.Map<User>(userDto);
+            var user = _mapper.Map<User>(userDto);
             if(userDto != null)
             {
                 user.Id = Guid.NewGuid();
@@ -37,7 +38,7 @@ namespace e_commerce_backend.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            return await Task.FromResult(NoContent());
+            return NoContent();
         }
 
         /// <summary>
@@ -50,11 +51,11 @@ namespace e_commerce_backend.Controllers
         [ProducesResponseType(204)]
         public async Task<ActionResult> GetUser(string email, string password)
         {
-            var user = _context.Users.FirstOrDefault(u => u.EmailAddress == email
-                                                        && u.Password == password);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.EmailAddress == email
+                                                                  && u.Password == password);
             if (user != null)
             {
-                return await Task.FromResult(Ok(user));
+                return Ok(user);
             }
 
             return NotFound("User not found");

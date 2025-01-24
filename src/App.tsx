@@ -2,8 +2,8 @@ import "./App.css";
 import { makeStyles } from "@material-ui/core";
 import Header from "./Header";
 import Products from "./Products";
-import SignUp from "./Signup";
 import { useState } from "react";
+import SignUp from "./Signup";
 import SignIn from "./SignIn";
 
 const useStyles = makeStyles(() => ({
@@ -27,6 +27,7 @@ function App() {
   function handleSearchButtonClick() {
     setISearchTriggered(true);
   }
+
   return (
     <div className={classes.container}>
       {isSignUp ? (
