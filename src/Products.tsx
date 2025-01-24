@@ -131,7 +131,9 @@ export default function Products({
     if (!price.toString().includes(".")) {
       return `${price}.00`;
     }
-    return price.toFixed(2); // Otherwise, just ensure it's formatted to two decimals
+
+    //formatted to two decimals
+    return price.toFixed(2);
   };
 
   return (
