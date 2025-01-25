@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
   form: {
-    height: "690px",
+    height: "710px",
     width: "650px",
     backgroundColor: "#F8F8F8",
     boxShadow: "0 4px 8px rgba(169, 169, 169, 0.5)",
@@ -53,7 +53,7 @@ export default function SignUp(): React.ReactElement {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [isValidEmail, setIsValidEmail] = useState(false);
+  const [isValidEmail, setIsValidEmail] = useState(true);
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const [isFocused, setIsFocused] = useState(false);
   const [emailExists, setEmailExists] = useState(false);
@@ -101,6 +101,8 @@ export default function SignUp(): React.ReactElement {
   async function registerUser() {
     if (!firstName || !lastName || !email || !password || !passwordConfirm) {
       setIsFieldsFilled(false);
+    } else if (!isValidEmail) {
+      setIsValidEmail(false);
     } else {
       const newUser: User = {
         id: "",
@@ -247,6 +249,11 @@ export default function SignUp(): React.ReactElement {
           {!isFieldsFilled && (
             <FormHelperText style={{ paddingLeft: "170px", color: "red" }}>
               Please fill all fields
+            </FormHelperText>
+          )}
+          {!isValidEmail && (
+            <FormHelperText style={{ paddingLeft: "170px", color: "red" }}>
+              Email format is not valid
             </FormHelperText>
           )}
         </div>

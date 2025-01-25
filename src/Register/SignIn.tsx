@@ -105,7 +105,6 @@ export default function SignIn(): React.ReactElement {
 
         if (!response.ok) {
           // Handle server-side errors
-          //alert("There is no user with this email address or password!");
           setUserExists(false);
         } else {
           // Handle successful response
@@ -195,7 +194,7 @@ export default function SignIn(): React.ReactElement {
           </div>
           {!userExists && (
             <FormHelperText style={{ paddingLeft: "170px", color: "red" }}>
-              Incorect email or password
+              Incorrect email or password credentials
             </FormHelperText>
           )}
           {!isFieldsFilled && (
