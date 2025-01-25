@@ -9,7 +9,8 @@ import {
 import React, { ChangeEvent, useState } from "react";
 import { UserCredentials } from "../Models/UserCredentials";
 import { User } from "../Models/User";
-import { data } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 const useStyles = makeStyles(() => ({
   form: {
     height: "600px",
@@ -46,6 +47,7 @@ const useStyles = makeStyles(() => ({
 
 export default function SignIn(): React.ReactElement {
   const classes = useStyles();
+  const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [isValidEmail, setIsValidEmail] = useState(false);
@@ -109,6 +111,8 @@ export default function SignIn(): React.ReactElement {
           const data = await response.json();
           setUserExists(true);
           setDataResponse(data);
+          navigate("/home");
+          window.location.reload();
         }
       } catch (error) {
         console.error("Error during user registration:", error);

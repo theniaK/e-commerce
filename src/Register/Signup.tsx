@@ -9,6 +9,8 @@ import {
 } from "@material-ui/core";
 import React, { ChangeEvent, useState } from "react";
 import { User } from "../Models/User";
+import { useNavigate } from "react-router-dom";
+
 const useStyles = makeStyles(() => ({
   form: {
     height: "690px",
@@ -45,6 +47,7 @@ const useStyles = makeStyles(() => ({
 
 export default function SignUp(): React.ReactElement {
   const classes = useStyles();
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -133,6 +136,8 @@ export default function SignUp(): React.ReactElement {
           const data = await response.json();
           console.log("Response Data:", data);
           setEmailExists(false);
+          navigate("/home");
+          window.location.reload();
         }
       } catch (error) {
         console.error("Error during user registration:", error);

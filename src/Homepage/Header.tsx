@@ -12,6 +12,7 @@ import {
 import { Toolbar } from "@material-ui/core";
 import React, { ChangeEvent } from "react";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
   toolBar: {
@@ -59,6 +60,10 @@ export default function Header({
 
   function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
     onSearchChange(event.target.value);
+  }
+
+  function handlePageRefresh() {
+    window.location.reload();
   }
 
   return (
@@ -176,11 +181,15 @@ export default function Header({
           <div className={classes.menuItems}>
             <a
               href="/login"
-              onClick={() => {}}
+              onClick={(e) => {
+                handlePageRefresh();
+              }}
               style={{ textDecoration: "none", color: "inherit" }}
             >
               <Button>
-                <Typography style={{ textTransform: "none" }}>Login</Typography>
+                <Typography style={{ textTransform: "none" }}>
+                  <Link to="/signin">Login</Link>
+                </Typography>
               </Button>
             </a>
           </div>
@@ -190,12 +199,14 @@ export default function Header({
           <div className={classes.menuItems}>
             <a
               href="/signup"
-              onClick={() => {}}
+              onClick={(e) => {
+                handlePageRefresh();
+              }}
               style={{ textDecoration: "none", color: "inherit" }}
             >
               <Button>
                 <Typography style={{ textTransform: "none" }}>
-                  Sign up
+                  <Link to="/signup">Sign up</Link>
                 </Typography>
               </Button>
             </a>
