@@ -221,7 +221,7 @@ export default function SignUp(): React.ReactElement {
           </div>
           <div>
             <TextField
-              label="Password Confirmation"
+              label="Confirm Password"
               variant="outlined"
               color="secondary"
               type="password"

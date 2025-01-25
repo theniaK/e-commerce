@@ -115,7 +115,7 @@ export default function SignIn(): React.ReactElement {
             navigate("/signup"); // redirect sign in page for admin
             window.location.reload();
           } else {
-            navigate("/home"); // redirect sign in page for client
+            navigate("/login"); // redirect sign in page for client
             window.location.reload();
           }
         }

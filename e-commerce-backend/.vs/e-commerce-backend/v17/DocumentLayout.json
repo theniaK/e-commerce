@@ -23,10 +23,6 @@
       "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:models\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\dtos\\usercredentialsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:dtos\\usercredentialsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -35,12 +31,16 @@
       "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:dtos\\itemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\theni\\e-commerce\\e-commerce-backend\\DTOs\\UserCredentialsDTO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DTOs\\UserCredentialsDTO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Repositories\\IUserRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Repositories\\IUserRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Repositories\\UserRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Repositories\\UserRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,20 +50,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -89,8 +77,19 @@
               "ViewState": "AgIAACQAAAAAAAAAAAAYwDIAAABUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-23T19:29:48.123Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
@@ -102,8 +101,7 @@
               "RelativeToolTip": "Models\\User.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T09:47:26.161Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-25T09:47:26.161Z"
             },
             {
               "$type": "Document",
@@ -115,8 +113,7 @@
               "RelativeToolTip": "Models\\Item.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T09:47:15.255Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-25T09:47:15.255Z"
             },
             {
               "$type": "Document",
@@ -128,12 +125,11 @@
               "RelativeToolTip": "Models\\BaseEntity.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T09:47:11.06Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-25T09:47:11.06Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "UserCredentialsDTO.cs",
               "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\DTOs\\UserCredentialsDTO.cs",
               "RelativeDocumentMoniker": "DTOs\\UserCredentialsDTO.cs",
@@ -141,12 +137,11 @@
               "RelativeToolTip": "DTOs\\UserCredentialsDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T09:47:01.712Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-25T09:47:01.712Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "UserDTO.cs",
               "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\DTOs\\UserDTO.cs",
               "RelativeDocumentMoniker": "DTOs\\UserDTO.cs",
@@ -154,12 +149,11 @@
               "RelativeToolTip": "DTOs\\UserDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T09:46:53.375Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-25T09:46:53.375Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "ItemDTO.cs",
               "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\DTOs\\ItemDTO.cs",
               "RelativeDocumentMoniker": "DTOs\\ItemDTO.cs",
@@ -167,12 +161,11 @@
               "RelativeToolTip": "DTOs\\ItemDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T09:46:03.794Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-25T09:46:03.794Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 8,
               "Title": "IUserRepository.cs",
               "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Repositories\\IUserRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\IUserRepository.cs",
@@ -180,12 +173,11 @@
               "RelativeToolTip": "Repositories\\IUserRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-24T21:34:02.876Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-24T21:34:02.876Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Repositories\\UserRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\UserRepository.cs",
@@ -193,8 +185,7 @@
               "RelativeToolTip": "Repositories\\UserRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-24T21:29:50.928Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-24T21:29:50.928Z"
             }
           ]
         }
