@@ -51,6 +51,7 @@ export default function SignIn(): React.ReactElement {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [isValidEmail, setIsValidEmail] = useState(false);
+  const [isFieldsFilled, setIsFieldsFilled] = useState(true);
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const [isFocused, setIsFocused] = useState(false);
   const [userExists, setUserExists] = useState(true);
@@ -79,9 +80,9 @@ export default function SignIn(): React.ReactElement {
 
   async function logInUser() {
     if (!email || !password) {
-      alert("Please fill in all fields!");
+      setIsFieldsFilled(false);
     } else if (!isValidEmail) {
-      alert("Email is not valid!");
+      setIsValidEmail(false);
     } else {
       const userCredentials: UserCredentials = {
         emailAddress: email,
@@ -111,8 +112,13 @@ export default function SignIn(): React.ReactElement {
           const data = await response.json();
           setUserExists(true);
           setDataResponse(data);
-          navigate("/home");
-          window.location.reload();
+          if (data.role === "Admin") {
+            navigate("/signup"); // redirect sign in page for admin
+            window.location.reload();
+          } else {
+            navigate("/home"); // redirect sign in page for client
+            window.location.reload();
+          }
         }
       } catch (error) {
         console.error("Error during user registration:", error);
@@ -123,7 +129,7 @@ export default function SignIn(): React.ReactElement {
   }
 
   if (dataResponse) {
-    const userResponse: User = {
+    const loggedInUser: User = {
       id: dataResponse.id,
       firstName: dataResponse.firstName,
       lastName: dataResponse.lastName,
@@ -132,7 +138,7 @@ export default function SignIn(): React.ReactElement {
       role: dataResponse.role,
     };
 
-    console.log("UserResponse", userResponse);
+    console.log("loggedInUser", loggedInUser);
   }
 
   return (
@@ -165,11 +171,11 @@ export default function SignIn(): React.ReactElement {
               value={email}
             />
           </div>
-          {isValidEmail === false && isFocused && (
+          {!isValidEmail && isFocused && (
             <FormHelperText style={{ paddingLeft: "170px" }} error>
               Invalid email address.
             </FormHelperText>
-          )}
+          )}{" "}
           <div>
             <TextField
               label="Password"
@@ -190,6 +196,11 @@ export default function SignIn(): React.ReactElement {
           {!userExists && (
             <FormHelperText style={{ paddingLeft: "170px", color: "red" }}>
               Incorect email or password
+            </FormHelperText>
+          )}
+          {!isFieldsFilled && (
+            <FormHelperText style={{ paddingLeft: "170px" }} error>
+              Please fill all fields
             </FormHelperText>
           )}
         </div>

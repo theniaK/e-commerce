@@ -57,6 +57,7 @@ export default function SignUp(): React.ReactElement {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const [isFocused, setIsFocused] = useState(false);
   const [emailExists, setEmailExists] = useState(false);
+  const [isFieldsFilled, setIsFieldsFilled] = useState(true);
 
   function handleFirstNameInputChange(event: ChangeEvent<HTMLInputElement>) {
     setFirstName(event.target.value);
@@ -99,11 +100,7 @@ export default function SignUp(): React.ReactElement {
 
   async function registerUser() {
     if (!firstName || !lastName || !email || !password || !passwordConfirm) {
-      alert("Please fill in all fields!");
-    } else if (password != passwordConfirm) {
-      alert("Passwords do not match!");
-    } else if (!isValidEmail) {
-      alert("Email is not valid!");
+      setIsFieldsFilled(false);
     } else {
       const newUser: User = {
         id: "",
@@ -136,7 +133,7 @@ export default function SignUp(): React.ReactElement {
           const data = await response.json();
           console.log("Response Data:", data);
           setEmailExists(false);
-          navigate("/home");
+          navigate("/signin");
           window.location.reload();
         }
       } catch (error) {
@@ -245,6 +242,11 @@ export default function SignUp(): React.ReactElement {
           {emailExists && (
             <FormHelperText style={{ paddingLeft: "170px", color: "red" }}>
               Email already exists
+            </FormHelperText>
+          )}
+          {!isFieldsFilled && (
+            <FormHelperText style={{ paddingLeft: "170px", color: "red" }}>
+              Please fill all fields
             </FormHelperText>
           )}
         </div>

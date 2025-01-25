@@ -188,7 +188,12 @@ export default function Header({
             >
               <Button>
                 <Typography style={{ textTransform: "none" }}>
-                  <Link to="/signin">Login</Link>
+                  <Link
+                    to="/signin"
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    Login
+                  </Link>
                 </Typography>
               </Button>
             </a>
@@ -206,7 +211,12 @@ export default function Header({
             >
               <Button>
                 <Typography style={{ textTransform: "none" }}>
-                  <Link to="/signup">Sign up</Link>
+                  <Link
+                    to="/signup"
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    Sign up
+                  </Link>
                 </Typography>
               </Button>
             </a>
