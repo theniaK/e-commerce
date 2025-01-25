@@ -9,9 +9,9 @@ import {
   Typography,
 } from "@material-ui/core";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import ItemDetailDialogue from "./ItemDetailDialogue";
+import { Item } from "../Models/Item";
 import ItemsNullOrEmptyMessage from "./ItemsNullOrEmptyMessage";
-import { Item } from "./Models/Item";
+import ItemDetailDialogue from "./ItemDetailDialogue";
 
 const useStyles = makeStyles(() => ({
   card: {
