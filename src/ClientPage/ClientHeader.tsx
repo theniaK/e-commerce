@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   AppBar,
   Button,
@@ -6,9 +7,9 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Toolbar } from "@material-ui/core";
-import React, { ChangeEvent } from "react";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import Dropdown from "./Dropdown";
 
 const useStyles = makeStyles(() => ({
   toolBar: {
@@ -30,12 +31,6 @@ const useStyles = makeStyles(() => ({
     display: "inline-block",
     paddingLeft: "100px",
   },
-  filter: {
-    paddingLeft: "10px",
-    paddingRight: "5px",
-    paddingBottom: "10px",
-    marginLeft: "50px",
-  },
   logo: {
     marginLeft: "50px",
   },
@@ -54,28 +49,28 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    cursor: "pointer",
     "&:hover": {
       backgroundColor: "#FFC0CB",
     },
   },
 }));
 
-type props = {
-  searchQuery: string;
-  onSearchChange: (query: string) => void;
-  onSearchButtonClicked: () => void;
-};
-
 export default function ClientHeader({
   searchQuery,
   onSearchChange,
   onSearchButtonClicked,
-}: props): React.ReactElement {
+}: {
+  searchQuery: string;
+  onSearchChange: (query: string) => void;
+  onSearchButtonClicked: () => void;
+}): React.ReactElement {
   const classes = useStyles();
+  const [dropdownVisible, setDropdownVisible] = useState(false);
 
-  function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
-    onSearchChange(event.target.value);
-  }
+  const handleDropdownToggle = () => {
+    setDropdownVisible((prevState) => !prevState); // Toggle dropdown visibility
+  };
 
   return (
     <AppBar className={classes.toolBar}>
@@ -111,7 +106,7 @@ export default function ClientHeader({
           </div>
           <div className={classes.menuItems}>
             <a
-              href="/login"
+              href="/featured"
               onClick={() => {}}
               style={{ textDecoration: "none", color: "inherit" }}
             >
@@ -124,7 +119,7 @@ export default function ClientHeader({
           </div>
           <div className={classes.menuItems}>
             <a
-              href="/login"
+              href="/recommended"
               onClick={() => {}}
               style={{ textDecoration: "none", color: "inherit" }}
             >
@@ -142,7 +137,7 @@ export default function ClientHeader({
           size="small"
           placeholder="Search in moogle"
           value={searchQuery}
-          onChange={handleInputChange}
+          onChange={(e) => onSearchChange(e.target.value)}
           InputProps={{
             style: {
               color: "black",
@@ -166,6 +161,7 @@ export default function ClientHeader({
             />
           </button>
         </div>
+
         <div
           style={{
             paddingLeft: "100px",
@@ -179,11 +175,7 @@ export default function ClientHeader({
               onClick={(e) => {}}
               style={{ textDecoration: "none", color: "inherit" }}
             >
-              <Button
-                style={{
-                  background: "none",
-                }}
-              >
+              <Button style={{ background: "none" }}>
                 <ShoppingCartOutlinedIcon
                   style={{
                     width: "30px",
@@ -195,20 +187,15 @@ export default function ClientHeader({
             </a>
           </div>
           <div className={classes.menuItems}>
-            <a
-              href="/signup"
-              onClick={(e) => {}}
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              <Button className={classes.avatar}>
-                <Typography style={{ textTransform: "none", fontSize: "22px" }}>
-                  PK
-                </Typography>
-              </Button>
-            </a>
+            <Button className={classes.avatar} onClick={handleDropdownToggle}>
+              <Typography style={{ textTransform: "none", fontSize: "22px" }}>
+                PK
+              </Typography>
+            </Button>
           </div>
         </div>
       </Toolbar>
+      <Dropdown dropdownVisible={dropdownVisible} />
     </AppBar>
   );
 }

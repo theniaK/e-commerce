@@ -1,11 +1,7 @@
 import {
   AppBar,
   Button,
-  FormControl,
-  InputLabel,
   makeStyles,
-  MenuItem,
-  Select,
   TextField,
   Typography,
 } from "@material-ui/core";
@@ -125,28 +121,6 @@ export default function Header({
             </a>
           </div>
         </div>
-        {/* <div className={classes.filter}>
-          <FormControl
-            variant="outlined"
-            style={{ width: "100px", height: "45px" }}
-          >
-            <InputLabel id="demo-simple-select-autowidth-label">
-              Filter
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-autowidth-label"
-              id="demo-simple-select-autowidth"
-              autoWidth
-              label="Filter"
-            >
-              <MenuItem value={0}>None</MenuItem>
-              <MenuItem value={1}>Name</MenuItem>
-              <MenuItem value={2}>Movie</MenuItem>
-              <MenuItem value={3}>Video Game</MenuItem>
-              <MenuItem value={4}>Book</MenuItem>
-            </Select>
-          </FormControl>
-        </div> */}
         <TextField
           className={classes.textField}
           variant="outlined"
