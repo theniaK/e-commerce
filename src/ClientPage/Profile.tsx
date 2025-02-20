@@ -21,6 +21,7 @@ const useStyles = makeStyles(() => ({
 export default function Profile() {
   const classes = useStyles();
   const responseData = useLocation().state?.responseData;
+
   return (
     <div className={classes.container}>
       <Typography>
@@ -41,9 +42,15 @@ export default function Profile() {
         </Typography>
         <Typography>
           <label>
-            <b>email: </b>
+            <b>E-mail: </b>
           </label>
           <p className={classes.info}>{responseData.emailAddress}</p>
+        </Typography>
+        <Typography>
+          <label>
+            <b>Phone Number: </b>
+          </label>
+          <p className={classes.info}>{responseData.phoneNumber}</p>
         </Typography>
       </div>
     </div>
