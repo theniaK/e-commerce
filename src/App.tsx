@@ -14,7 +14,10 @@ function App() {
         <Route path="/shop" element={<Homepage key={Math.random()} />} />
         <Route path="/featured" element={<Homepage key={Math.random()} />} />
         <Route path="/recommended" element={<Homepage key={Math.random()} />} />
-        <Route path="/login" element={<ClientHomepage key={Math.random()} />} />
+        <Route
+          path="/clientpage"
+          element={<ClientHomepage key={Math.random()} />}
+        />
         <Route path="/signin" element={<SignIn key={Math.random()} />} />
         <Route path="/signup" element={<SignUp key={Math.random()} />} />
       </Routes>

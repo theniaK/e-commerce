@@ -20,6 +20,7 @@ const useStyles = makeStyles(() => ({
     marginTop: "100px",
     marginLeft: "20px",
     paddingTop: 0,
+    marginBottom: "-50px",
     width: "300px",
     height: "490px",
     backgroundColor: "#F8F8F8",

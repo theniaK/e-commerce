@@ -60,10 +60,12 @@ export default function ClientHeader({
   searchQuery,
   onSearchChange,
   onSearchButtonClicked,
+  responseData,
 }: {
   searchQuery: string;
   onSearchChange: (query: string) => void;
   onSearchButtonClicked: () => void;
+  responseData?: any;
 }): React.ReactElement {
   const classes = useStyles();
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -188,8 +190,15 @@ export default function ClientHeader({
           </div>
           <div className={classes.menuItems}>
             <Button className={classes.avatar} onClick={handleDropdownToggle}>
-              <Typography style={{ textTransform: "none", fontSize: "22px" }}>
-                PK
+              <Typography
+                style={{
+                  textTransform: "none",
+                  fontSize: "22px",
+                  fontFamily: "Candara, sans-serif",
+                }}
+              >
+                {responseData.firstName[0].toUpperCase()}
+                {responseData.lastName[0].toUpperCase()}
               </Typography>
             </Button>
           </div>
