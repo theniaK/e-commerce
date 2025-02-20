@@ -4,6 +4,7 @@ import "./App.css";
 import SignIn from "./Register/SignIn";
 import SignUp from "./Register/Signup";
 import ClientHomepage from "./ClientPage/ClientHomepage";
+import Profile from "./ClientPage/Profile";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           path="/clientpage"
           element={<ClientHomepage key={Math.random()} />}
         />
+        <Route path="/profile" element={<Profile key={Math.random()} />} />
         <Route path="/signin" element={<SignIn key={Math.random()} />} />
         <Route path="/signup" element={<SignUp key={Math.random()} />} />
       </Routes>

@@ -204,7 +204,7 @@ export default function ClientHeader({
           </div>
         </div>
       </Toolbar>
-      <Dropdown dropdownVisible={dropdownVisible} />
+      <Dropdown dropdownVisible={dropdownVisible} responseData={responseData} />
     </AppBar>
   );
 }
