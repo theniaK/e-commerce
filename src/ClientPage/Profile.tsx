@@ -42,7 +42,7 @@ export default function Profile() {
         </Typography>
         <Typography>
           <label>
-            <b>E-mail: </b>
+            <b>E-Mail: </b>
           </label>
           <p className={classes.info}>{responseData.emailAddress}</p>
         </Typography>
@@ -51,6 +51,12 @@ export default function Profile() {
             <b>Phone Number: </b>
           </label>
           <p className={classes.info}>{responseData.phoneNumber}</p>
+        </Typography>
+        <Typography>
+          <label>
+            <b>Address: </b>
+          </label>
+          <p className={classes.info}>{responseData.address}</p>
         </Typography>
       </div>
     </div>

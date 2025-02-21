@@ -112,10 +112,10 @@ export default function SignIn(): React.ReactElement {
           setUserExists(true);
           setDataResponse(data);
           if (data.role === "Admin") {
-            navigate("/signedin", { state: { responseData: data } }); // redirect sign in page for admin
+            navigate("/loggedin", { state: { responseData: data } }); // redirect sign in page for admin
             window.location.reload();
           } else {
-            navigate("/signedin", { state: { responseData: data } }); // redirect sign in page for client
+            navigate("/loggedin", { state: { responseData: data } }); // redirect sign in page for client
             window.location.reload();
           }
         }
@@ -125,20 +125,6 @@ export default function SignIn(): React.ReactElement {
       setEmail("");
       setPassword("");
     }
-  }
-
-  if (dataResponse) {
-    const loggedInUser: User = {
-      id: dataResponse.id,
-      firstName: dataResponse.firstName,
-      lastName: dataResponse.lastName,
-      emailAddress: dataResponse.emailAddress,
-      password: dataResponse.password,
-      phoneNumber: dataResponse.phoneNumber,
-      role: dataResponse.role,
-    };
-
-    console.log("loggedInUser", loggedInUser);
   }
 
   return (

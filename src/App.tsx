@@ -16,7 +16,7 @@ function App() {
         <Route path="/featured" element={<Homepage key={Math.random()} />} />
         <Route path="/recommended" element={<Homepage key={Math.random()} />} />
         <Route
-          path="/signedin"
+          path="/loggedin"
           element={<ClientHomepage key={Math.random()} />}
         />
         <Route path="/profile" element={<Profile key={Math.random()} />} />

@@ -298,6 +298,18 @@
         }
       }
     },
+    "/api/Users/deleteAll": {
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
     "/api/Users/delete": {
       "delete": {
         "tags": [
@@ -434,6 +446,10 @@
             "nullable": true
           },
           "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
             "type": "string",
             "nullable": true
           },

@@ -1,5 +1,4 @@
-﻿using System.Reflection.Metadata.Ecma335;
-using AutoMapper;
+﻿using AutoMapper;
 using e_commerce_backend.Context;
 using e_commerce_backend.DTOs;
 using e_commerce_backend.Models;
@@ -37,6 +36,7 @@ namespace e_commerce_backend.Controllers
         public async Task<ActionResult> SignUpUser(UserDTO userDto)
         {
             var user = _mapper.Map<User>(userDto);
+            user.LastLogIn = DateTime.UtcNow;
             if (user == null) 
             {
                 return BadRequest();
@@ -65,6 +65,8 @@ namespace e_commerce_backend.Controllers
                                                                   && u.Password == userCred.Password);
             if (user != null)
             {
+                user.LastLogIn = DateTime.UtcNow;
+                await _context.SaveChangesAsync();
                 return Ok(user);
             }
 
@@ -107,11 +109,31 @@ namespace e_commerce_backend.Controllers
         /// Delete all users
         /// </summary>
         /// <returns></returns>
-        [HttpDelete("delete")]
+        [HttpDelete("deleteAll")]
         [ProducesResponseType(204)]
         public async Task<ActionResult> DeleteAllUsers()
         {
             await _baseRepository.DeleteAllEntities();
+            return NoContent();
+        }
+
+
+        /// <summary>
+        /// Delete all users but not the Admin
+        /// </summary>
+        /// <returns></returns>
+        [HttpDelete("delete")]
+        [ProducesResponseType(204)]
+        public async Task<ActionResult> DeleteAllButAdmin()
+        {
+            var users = await _context.Users.ToListAsync();
+            foreach (var user in users)
+            {
+                if (user != null && user.Role!= "Admin")
+                {
+                    await _baseRepository.DeleteEntity(user.Id);
+                }
+            }
             return NoContent();
         }
     }

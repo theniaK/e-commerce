@@ -111,6 +111,7 @@ export default function SignUp(): React.ReactElement {
         emailAddress: email,
         password: password,
         phoneNumber: "",
+        address: "",
         role: "Client",
       };
 
