@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using e_commerce_backend.Context;
 using e_commerce_backend.DTOs;
+using e_commerce_backend.Helpers;
 using e_commerce_backend.Models;
 using e_commerce_backend.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -35,17 +36,22 @@ namespace e_commerce_backend.Controllers
         [ProducesResponseType(400)]
         public async Task<ActionResult> SignUpUser(UserDTO userDto)
         {
+            if (userDto == null)
+            {
+                return BadRequest("Model received is not valid");
+            }
+
             var user = _mapper.Map<User>(userDto);
             user.LastLogIn = DateTime.UtcNow;
             if (user == null) 
             {
-                return BadRequest();
+                return BadRequest("Failed to map the user data.");
             }
 
             var isUser = await _userRepository.CheckEmailAdress(user.EmailAddress);
             if (isUser)
             {
-                return BadRequest();
+                return BadRequest("User already exists.");
             }
             await _baseRepository.AddEntity(user);
             return Ok(new { message = "User successfully registered", userId = user.Id });
@@ -126,14 +132,16 @@ namespace e_commerce_backend.Controllers
         [ProducesResponseType(204)]
         public async Task<ActionResult> DeleteAllButAdmin()
         {
-            var users = await _context.Users.ToListAsync();
-            foreach (var user in users)
+            var usersToDelete = await _context.Users
+                .Where(user => user.Role != RoleNames.Admin)
+                .ToListAsync();
+            
+            if(usersToDelete.Any())
             {
-                if (user != null && user.Role!= "Admin")
-                {
-                    await _baseRepository.DeleteEntity(user.Id);
-                }
+                _context.RemoveRange(usersToDelete);
+                await _context.SaveChangesAsync();
             }
+
             return NoContent();
         }
     }

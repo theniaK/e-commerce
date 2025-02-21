@@ -1,5 +1,6 @@
 import { makeStyles, Typography } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
+import { User } from "../Models/User";
 const useStyles = makeStyles(() => ({
   dropdown: {
     position: "absolute",
@@ -33,7 +34,7 @@ const useStyles = makeStyles(() => ({
 
 type props = {
   dropdownVisible: boolean;
-  responseData: any;
+  responseData: User;
 };
 
 const Dropdown = ({ dropdownVisible, responseData }: props) => {
