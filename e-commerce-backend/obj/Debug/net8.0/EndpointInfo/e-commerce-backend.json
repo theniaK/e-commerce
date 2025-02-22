@@ -310,7 +310,7 @@
         }
       }
     },
-    "/api/Users/delete": {
+    "/api/Users/deleteAllButAdmin": {
       "delete": {
         "tags": [
           "Users"

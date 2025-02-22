@@ -8,7 +8,6 @@ import {
 } from "@material-ui/core";
 import React, { ChangeEvent, useState } from "react";
 import { UserCredentials } from "../Models/UserCredentials";
-import { User } from "../Models/User";
 import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({

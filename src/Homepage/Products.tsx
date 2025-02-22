@@ -42,7 +42,7 @@ const useStyles = makeStyles(() => ({
     width: "35%",
     marginLeft: "85px",
     marginBottom: "10px",
-    backgroundColor: "#FFC0CB",
+    borderRadius: "3px",
   },
   styleTitle: {
     fontSize: "20px",
@@ -137,6 +137,22 @@ export default function Products({
     return price.toFixed(2);
   };
 
+  function getItemCategory(itemCategory: string) {
+    if (itemCategory === "Movie") {
+      return "#FFC0CB";
+    }
+
+    if (itemCategory === "Book") {
+      return "#E0BBE4";
+    }
+
+    if (itemCategory === "Video game") {
+      return "#A8E6CF";
+    }
+
+    return "#FFC0CB";
+  }
+
   return (
     <div>
       {searchQuery && isSearchTriggered && data ? (
@@ -171,6 +187,9 @@ export default function Products({
                     <div>
                       <Typography
                         className={classes.styleCategory}
+                        style={{
+                          backgroundColor: getItemCategory(item.category),
+                        }}
                         component="div"
                       >
                         {item.category}
@@ -227,7 +246,13 @@ export default function Products({
             />
             <CardContent style={{ paddingBottom: "200px", paddingTop: "10px" }}>
               <div>
-                <Typography className={classes.styleCategory} component="div">
+                <Typography
+                  className={classes.styleCategory}
+                  style={{
+                    backgroundColor: getItemCategory(item.category),
+                  }}
+                  component="div"
+                >
                   {item.category}
                 </Typography>
               </div>

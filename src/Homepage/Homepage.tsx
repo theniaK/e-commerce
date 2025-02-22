@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import Header from "./Header";
 import Products from "./Products";
@@ -38,6 +38,7 @@ export default function Homepage({}): React.ReactElement {
   function handleSearchButtonClick() {
     setISearchTriggered(true);
   }
+
   return (
     <div>
       <div className={classes.container}>

@@ -35,23 +35,25 @@ const useStyles = makeStyles(() => ({
     marginLeft: "50px",
   },
   avatar: {
-    paddingLeft: "6px",
-    paddingRight: "6px",
-    paddingBottom: "7px",
-    marginLeft: "50px",
+    padding: "8px",
+    marginLeft: "40px",
     marginTop: "5px",
-    width: "60px",
-    height: "60px",
+    width: "70px",
+    height: "70px",
     borderRadius: "50%",
-    backgroundColor: "#FFC0CB",
-    color: "black",
-    border: "none",
+    backgroundColor: "#E0E0E0",
+    color: "white",
+    border: "2px solid #fff",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     cursor: "pointer",
+    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+    transition: "all 0.3s ease",
     "&:hover": {
-      backgroundColor: "#FFC0CB",
+      backgroundColor: "#B2B2B2",
+      transform: "scale(1.05)",
+      boxShadow: "0 6px 10px rgba(0, 0, 0, 0.15)",
     },
   },
 }));
@@ -193,8 +195,10 @@ export default function ClientHeader({
               <Typography
                 style={{
                   textTransform: "none",
-                  fontSize: "22px",
+                  fontSize: "23px",
                   fontFamily: "Candara, sans-serif",
+                  fontWeight: "bold",
+                  color: "#404040",
                 }}
               >
                 {responseData.firstName[0].toUpperCase()}

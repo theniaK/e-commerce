@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\helpers\\rolenames.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:helpers\\rolenames.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\helpers\\rolenames.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:helpers\\rolenames.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
@@ -67,13 +67,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "UsersController.cs",
               "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Controllers\\UsersController.cs",
               "RelativeDocumentMoniker": "Controllers\\UsersController.cs",
               "ToolTip": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Controllers\\UsersController.cs",
               "RelativeToolTip": "Controllers\\UsersController.cs",
-              "ViewState": "AgIAAH4AAAAAAAAAAAAmwIcAAAA7AAAAAAAAAA==",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAcwIIAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-23T19:29:48.123Z",
               "IsPinned": true,
@@ -101,12 +101,11 @@
               "RelativeToolTip": "Repositories\\UserRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T10:35:04.952Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-21T10:35:04.952Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "RoleNames.cs",
               "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Helpers\\RoleNames.cs",
               "RelativeDocumentMoniker": "Helpers\\RoleNames.cs",
@@ -114,8 +113,7 @@
               "RelativeToolTip": "Helpers\\RoleNames.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T10:33:55.651Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-21T10:33:55.651Z"
             },
             {
               "$type": "Document",
@@ -127,8 +125,7 @@
               "RelativeToolTip": "Models\\User.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T09:47:26.161Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-25T09:47:26.161Z"
             },
             {
               "$type": "Document",
@@ -140,8 +137,7 @@
               "RelativeToolTip": "DTOs\\UserDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T09:46:53.375Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-25T09:46:53.375Z"
             },
             {
               "$type": "Document",

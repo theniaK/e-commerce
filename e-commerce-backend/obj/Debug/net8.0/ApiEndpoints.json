@@ -128,22 +128,6 @@
   },
   {
     "ContainingType": "e_commerce_backend.Controllers.UsersController",
-    "Method": "DeleteAllButAdmin",
-    "RelativePath": "api/Users/delete",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 204
-      }
-    ]
-  },
-  {
-    "ContainingType": "e_commerce_backend.Controllers.UsersController",
     "Method": "DeleteOneUser",
     "RelativePath": "api/Users/delete/{id}",
     "HttpMethod": "DELETE",
@@ -168,6 +152,22 @@
     "ContainingType": "e_commerce_backend.Controllers.UsersController",
     "Method": "DeleteAllUsers",
     "RelativePath": "api/Users/deleteAll",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 204
+      }
+    ]
+  },
+  {
+    "ContainingType": "e_commerce_backend.Controllers.UsersController",
+    "Method": "DeleteAllButAdmin",
+    "RelativePath": "api/Users/deleteAllButAdmin",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,

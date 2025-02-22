@@ -1,21 +1,20 @@
-import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useLocation } from "react-router-dom";
+import ProfileHeader from "./ProfileHeader";
+import ProfileBody from "./ProfileBody";
+import Footer from "../Homepage/Footer";
 
 const useStyles = makeStyles(() => ({
-  container: {
+  footer: {
+    backgroundColor: "#FFFFFF",
+    color: "black",
+    boxShadow: "0 -2px 5px rgba(0, 0, 0, 0.3)",
     fontFamily: "Candara, sans-serif",
-  },
-  label: {
-    display: "inline",
-    justifyContent: "left",
-    alignItems: "left",
-    marginLeft: "30px",
-    alignContent: "left",
-  },
-  info: {
-    display: "inline",
-    alignContent: "left",
+    width: "100%",
+    textAlign: "center",
+    position: "fixed",
+    bottom: 0,
+    left: 0,
   },
 }));
 export default function Profile() {
@@ -23,41 +22,15 @@ export default function Profile() {
   const responseData = useLocation().state?.responseData;
 
   return (
-    <div className={classes.container}>
-      <Typography>
-        <h1>Profile</h1>
-      </Typography>
-      <div className={classes.label}>
-        <Typography>
-          <label>
-            <b>First Name: </b>
-          </label>
-          <p className={classes.info}>{responseData.firstName}</p>
-        </Typography>
-        <Typography>
-          <label>
-            <b>Last Name: </b>
-          </label>
-          <p className={classes.info}>{responseData.lastName}</p>
-        </Typography>
-        <Typography>
-          <label>
-            <b>E-Mail: </b>
-          </label>
-          <p className={classes.info}>{responseData.emailAddress}</p>
-        </Typography>
-        <Typography>
-          <label>
-            <b>Phone Number: </b>
-          </label>
-          <p className={classes.info}>{responseData.phoneNumber}</p>
-        </Typography>
-        <Typography>
-          <label>
-            <b>Address: </b>
-          </label>
-          <p className={classes.info}>{responseData.address}</p>
-        </Typography>
+    <div>
+      <div>
+        <ProfileHeader responseData={responseData} />
+      </div>
+      <div>
+        <ProfileBody responseData={responseData} />
+      </div>
+      <div className={classes.footer}>
+        <Footer />
       </div>
     </div>
   );

@@ -128,7 +128,7 @@ namespace e_commerce_backend.Controllers
         /// Delete all users but not the Admin
         /// </summary>
         /// <returns></returns>
-        [HttpDelete("delete")]
+        [HttpDelete("deleteAllButAdmin")]
         [ProducesResponseType(204)]
         public async Task<ActionResult> DeleteAllButAdmin()
         {
