@@ -4,20 +4,20 @@ import { makeStyles, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
   infoContainer: {
-    width: "80vw" /* Adjust width as a percentage of the viewport width */,
-    maxWidth: "700px" /* Prevent it from getting too wide on large screens */,
-    height: "50vh" /* Set height as a percentage of the viewport height */,
-    maxHeight: "300px" /* Prevent it from getting too tall */,
+    width: "80vw",
+    maxWidth: "700px",
+    height: "50vh",
+    maxHeight: "300px",
     backgroundColor: "#F8F8F8",
-    marginLeft: "10vw" /* Center it horizontally */,
-    marginRight: "auto" /* Center it horizontally */,
-    marginTop: "5vh" /* Vertical margin as a percentage of viewport height */,
+    marginLeft: "10vw",
+    marginRight: "auto",
+    marginTop: "5vh",
     boxShadow: "0 4px 8px rgba(169, 169, 169, 0.5)",
     borderRadius: "10px",
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",
-    padding: "2rem" /* Use rem for padding to keep it relative to font size */,
+    padding: "2rem",
   },
 
   labelWrapper: {

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import Header from "../ClientPage/ClientHeader";
-import Products from "../Homepage/Products";
 import Footer from "../Homepage/Footer";
 import { useLocation } from "react-router-dom";
+import ClientProducts from "./ClientProducts";
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -51,7 +51,7 @@ export default function ClientHomepage({}): React.ReactElement {
         />
       </div>
       <div className={classes.products}>
-        <Products
+        <ClientProducts
           searchQuery={searchQuery}
           isSearchTriggered={isSearchTriggered}
         />

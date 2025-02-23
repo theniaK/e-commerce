@@ -10,9 +10,8 @@ import {
 } from "@material-ui/core";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Item } from "../Models/Item";
-import ItemsNullOrEmptyMessage from "./ItemsNullOrEmptyMessage";
-import ItemDetailDialogue from "./ItemDetailDialogue";
-import { useNavigate } from "react-router-dom";
+import ItemsNullOrEmptyMessage from "../Homepage/ItemsNullOrEmptyMessage";
+import ItemDetailDialogue from "../Homepage/ItemDetailDialogue";
 
 const useStyles = makeStyles(() => ({
   card: {
@@ -78,7 +77,7 @@ type props = {
   isSearchTriggered: boolean;
 };
 
-export default function Products({
+export default function ClientProducts({
   searchQuery,
   isSearchTriggered,
 }: props): React.ReactElement {
@@ -86,7 +85,6 @@ export default function Products({
   const [data, setData] = useState<Item[]>([]);
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
-  const navigate = useNavigate();
 
   function onCardClick(item: any) {
     setSelectedItem(item);
@@ -279,12 +277,7 @@ export default function Products({
                 <Typography className={classes.stylePrice}>
                   {formatPrice(item.price)}$
                 </Typography>
-                <Button
-                  className={classes.styleButton}
-                  onClick={() => {
-                    navigate("/signUp", { state: { item: item } });
-                  }}
-                >
+                <Button className={classes.styleButton}>
                   <ShoppingCartOutlinedIcon />
                 </Button>
               </Box>
