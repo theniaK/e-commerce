@@ -13,6 +13,7 @@ import { Item } from "../Models/Item";
 import ItemsNullOrEmptyMessage from "./ItemsNullOrEmptyMessage";
 import ItemDetailDialogue from "./ItemDetailDialogue";
 import { useNavigate } from "react-router-dom";
+import { getProducts } from "../services/productService";
 
 const useStyles = makeStyles(() => ({
   card: {
@@ -104,20 +105,35 @@ export default function Products({
     }
   }, [isSearchTriggered]);
 
+  /// This is the old code that was replaced by the new code below using Axios
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch("https://localhost:7231/api/Items/get");
+  //       if (!response.ok) {
+  //         throw new Error("Network response was not ok");
+  //       }
+  //       const result = await response.json();
+
+  //       setData(result);
+  //     } catch (error) {}
+  //   };
+
+  //   fetchData(); // Call the fetch function
+  // }, []);
+
+  /// This is the old code that was replaced by the new code below using Axios
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("https://localhost:7231/api/Items/get");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const result = await response.json();
-
-        setData(result);
-      } catch (error) {}
-    };
-
-    fetchData(); // Call the fetch function
+    const response = getProducts();
+    response
+      .then((result) => {
+        setData(result.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   function truncateText(text: any, wordLimit: any) {
