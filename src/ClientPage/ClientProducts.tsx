@@ -84,11 +84,13 @@ export default function ClientProducts({
   const classes = useStyles();
   const [data, setData] = useState<Item[]>([]);
   const [openDialog, setOpenDialog] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState<Item | null>(null);
 
-  function onCardClick(item: any) {
-    setSelectedItem(item);
-    setOpenDialog(true);
+  function onCardClick(item: Item | null) {
+    if (item !== null) {
+      setSelectedItem(item);
+      setOpenDialog(true);
+    }
   }
 
   function handleCloseDialog() {
@@ -118,7 +120,7 @@ export default function ClientProducts({
     fetchData(); // Call the fetch function
   }, []);
 
-  function truncateText(text: any, wordLimit: any) {
+  function truncateText(text: string, wordLimit: number) {
     if (text !== undefined) {
       const words = text.split(" ");
       if (words.length > wordLimit) {

@@ -7,9 +7,10 @@ import {
   Typography,
 } from "@material-ui/core";
 import React from "react";
+import { Item } from "../Models/Item";
 
 type props = {
-  selectedItem: any;
+  selectedItem: Item | null;
   openDialogue: boolean;
   handleCloseDialog: () => void;
   formatPrice: (price: number) => string;

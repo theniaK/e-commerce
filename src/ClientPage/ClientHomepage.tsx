@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core";
-import Header from "../ClientPage/ClientHeader";
+import ClientHeader from "../ClientPage/ClientHeader";
 import Footer from "../Homepage/Footer";
 import { useLocation } from "react-router-dom";
 import ClientProducts from "./ClientProducts";
@@ -43,7 +43,7 @@ export default function ClientHomepage({}): React.ReactElement {
   return (
     <div className={classes.container}>
       <div>
-        <Header
+        <ClientHeader
           searchQuery={searchQuery}
           onSearchChange={handleSearchQuery}
           onSearchButtonClicked={handleSearchButtonClick}

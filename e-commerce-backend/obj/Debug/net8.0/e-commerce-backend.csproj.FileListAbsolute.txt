@@ -139,4 +139,3 @@ C:\Users\theni\e-commerce\e-commerce-backend\obj\Debug\net8.0\ref\e-commerce-bac
 C:\Users\theni\e-commerce\e-commerce-backend\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\theni\e-commerce\e-commerce-backend\bin\Debug\net8.0\AutoMapper.dll
 C:\Users\theni\e-commerce\e-commerce-backend\bin\Debug\net8.0\DbSeed\products.json
-C:\Users\theni\e-commerce\e-commerce-backend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

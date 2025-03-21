@@ -86,12 +86,14 @@ export default function Products({
   const classes = useStyles();
   const [data, setData] = useState<Item[]>([]);
   const [openDialog, setOpenDialog] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState<Item | null>(null);
   const navigate = useNavigate();
 
-  function onCardClick(item: any) {
-    setSelectedItem(item);
-    setOpenDialog(true);
+  function onCardClick(item: Item | null) {
+    if (item !== null) {
+      setSelectedItem(item);
+      setOpenDialog(true);
+    }
   }
 
   function handleCloseDialog() {
@@ -99,6 +101,12 @@ export default function Products({
     setSelectedItem(null);
   }
 
+  function handleImage(image: string) {
+    if (image === "") {
+      return "no-image.jpg";
+    }
+    return image;
+  }
   useEffect(() => {
     if (isSearchTriggered) {
       isSearchTriggered = false;
@@ -136,7 +144,7 @@ export default function Products({
       });
   }, []);
 
-  function truncateText(text: any, wordLimit: any) {
+  function truncateText(text: string, wordLimit: number) {
     if (text !== undefined) {
       const words = text.split(" ");
       if (words.length > wordLimit) {
@@ -259,7 +267,7 @@ export default function Products({
               className={classes.cardMedia}
               component="img"
               height="140"
-              image={item.image}
+              image={handleImage(item.image)}
               onClick={() => onCardClick(item)}
             />
             <CardContent style={{ paddingBottom: "200px", paddingTop: "10px" }}>
