@@ -12,6 +12,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Item } from "../Models/Item";
 import ItemsNullOrEmptyMessage from "../Homepage/ItemsNullOrEmptyMessage";
 import ItemDetailDialogue from "../Homepage/ItemDetailDialogue";
+import { getProducts } from "../services/productService";
 
 const useStyles = makeStyles(() => ({
   card: {
@@ -105,19 +106,14 @@ export default function ClientProducts({
   }, [isSearchTriggered]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("https://localhost:7231/api/Items/get");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const result = await response.json();
-
-        setData(result);
-      } catch (error) {}
-    };
-
-    fetchData(); // Call the fetch function
+    const response = getProducts();
+    response
+      .then((result) => {
+        setData(result.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   function truncateText(text: string, wordLimit: number) {

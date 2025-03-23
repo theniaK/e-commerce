@@ -4,7 +4,6 @@ using e_commerce_backend.DTOs;
 using e_commerce_backend.Models;
 using e_commerce_backend.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
 namespace e_commerce_backend.Controllers
@@ -31,8 +30,8 @@ namespace e_commerce_backend.Controllers
         /// <summary>
         /// Post all items from json
         /// </summary>
-        /// <returns></returns>
-        [HttpPost("post/json")]
+        /// <returns>No content if succesful; otherwise 404 Not Found response.</returns>
+        [HttpPost("seedJson")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         public async Task<ActionResult> SeedItemsFromJson()
@@ -46,15 +45,14 @@ namespace e_commerce_backend.Controllers
                 {
                     foreach (Item item in items)
                     {
-                        //var savedItem = _context.Items.FirstOrDefault(i => i.Title == item.Title);
-                        var savedItem = _itemRepository.FirstOrDefault(item);
+                        var savedItem = _itemRepository.GetSavedItemAsync(item);
                         if (savedItem != null)
                         {
                             continue;
                         }
 
-                        await _baseRepository.AddEntity(item);
-                        await _baseRepository.Save();
+                        await _baseRepository.AddEntityAsync(item);
+                        await _baseRepository.SaveAsync();
                     }
                         return NoContent();
                 }
@@ -66,14 +64,19 @@ namespace e_commerce_backend.Controllers
         /// <summary>
         /// Post an item
         /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
-        [HttpPost("post")]
+        /// <param name="itemDTO"></param>
+        /// <returns>No content if succesful; otherwise 400 Bad Request response.</returns>
+        [HttpPost("item")]
         [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
         public async Task<ActionResult> PostOneItem(ItemDTO itemDTO)
         {
             var entity = _mapper.Map<Item>(itemDTO);
-            await _baseRepository.AddEntity(entity);
+            if(entity == null)
+            {
+                return BadRequest();
+            }
+            await _baseRepository.AddEntityAsync(entity);
             return NoContent();
         }
 
@@ -81,25 +84,26 @@ namespace e_commerce_backend.Controllers
         /// <summary>
         /// Get all items
         /// </summary>
-        /// <returns></returns>
-        [HttpGet("get")]
-        //[Authorize]
+        /// <returns>>The item list.</returns>
+        [HttpGet("items")]
         [ProducesResponseType(200)]
         public async Task<ActionResult<IEnumerable<Item>>> GetAllItems()
         {
-            IEnumerable<Item> items = await _baseRepository.GetEntities();
+            IEnumerable<Item> items = await _baseRepository.GetEntitiesAsync();
             return Ok(items.ToList());
         }
 
         /// <summary>
-        /// Get an item
+        /// Get an item by id
         /// </summary>
-        /// <returns>The item</returns>
-        [HttpGet("get/{id}")]
+        /// <param name="id"></param>
+        /// <returns>The item if succesful; otherwise 404 Not Found response./returns>
+        [HttpGet("item/{id}")]
         [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
         public async Task<ActionResult> GetOneItem(Guid id)
         {
-            var item = await _baseRepository.GetEntity(id);
+            var item = await _baseRepository.GetEntityAsync(id);
             if (item != null)
             {
                 return Ok(item);
@@ -111,24 +115,32 @@ namespace e_commerce_backend.Controllers
         /// <summary>
         /// Delete all items
         /// </summary>
-        /// <returns></returns>
-        [HttpDelete("delete")]
+        /// <returns>No Content response.</returns>
+        [HttpDelete("items")]
         [ProducesResponseType(204)]
         public async Task<ActionResult> DeleteAllItems()
         {
-            await _baseRepository.DeleteAllEntities();
+            await _baseRepository.DeleteAllEntitiesAsync();
             return NoContent();
         }
 
         /// <summary>
-        /// Delete an item
+        /// Delete an item by id
         /// </summary>
-        /// <returns></returns>
-        [HttpDelete("delete/{id}")]
+        /// <param name="id"></param>
+        /// <returns>No Content if successful; otherwise 404 Not Found response.</returns>
+        [HttpDelete("item/{id}")]
         [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
         public async Task<ActionResult> DeleteOneItem(Guid id)
         {
-            await _baseRepository.DeleteEntity(id);
+            var item = await _baseRepository.GetEntityAsync(id);
+            if (item == null)
+            {
+                return NotFound($"No item was found with the id: {id}!");
+            }
+
+            await _baseRepository.DeleteEntityAsync(id);
             return NoContent();
         }
     }

@@ -1,5 +1,4 @@
-﻿
-using e_commerce_backend.Context;
+﻿using e_commerce_backend.Context;
 using e_commerce_backend.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,53 +13,88 @@ namespace e_commerce_backend.Repositories
             _context = context;
         }
 
-        public async Task AddEntity(T entity)
+        public async Task AddEntityAsync(T entity)
         {
             if (entity != null)
             {
                 entity.Id = Guid.NewGuid();
-                await _context.Set<T>().AddAsync(entity);
-                await _context.SaveChangesAsync();
+                try
+                {
+                    await _context.Set<T>().AddAsync(entity);
+                    await SaveAsync();
+                }
+                catch (Exception ex)
+                {
+                    throw new InvalidOperationException("An error occurred while adding the entity.", ex);
+                }
             }
         }
 
-        public async Task DeleteAllEntities()
+        public async Task DeleteAllEntitiesAsync()
         {
-            var entities = await _context.Set<T>().ToListAsync();
-            _context.RemoveRange(entities);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task DeleteEntity(Guid id)
-        {
-            var entity = await _context.Set<T>().FindAsync(id);
-            if (entity == null)
+            try
             {
-                return;
+                var entities = await _context.Set<T>().ToListAsync();
+                _context.RemoveRange(entities);
+                await SaveAsync();
             }
-
-            _context.Remove(entity);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<IEnumerable<T>> GetEntities()
-        {
-            var entities = await _context.Set<T>().ToListAsync();
-            return entities;
-        }
-
-        public async Task<T> GetEntity(Guid id)
-        {
-            var entity = await _context.Set<T>().FindAsync(id);
-            if (entity == null)
+            catch (Exception ex)
             {
-                return null;
+                throw new InvalidOperationException("An error occurred while deleting the entities.", ex);
             }
-
-            return entity;
         }
 
-        public async Task Save()
+        public async Task DeleteEntityAsync(Guid id)
+        {
+            try
+            {
+                var entity = await _context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
+                if (entity == null)
+                {
+                    return;
+                }
+
+                _context.Remove(entity);
+                await SaveAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("An error occurred while deleting the entity.", ex);
+            }
+        }
+
+        public async Task<IEnumerable<T>> GetEntitiesAsync()
+        {
+            try
+            {
+                var entities = await _context.Set<T>().ToListAsync();
+                return entities;
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("An error occurred while getting the entities.", ex);
+            }
+        }
+
+        public async Task<T?> GetEntityAsync(Guid id)
+        {
+            try
+            {
+                var entity = await _context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
+                if (entity == null)
+                {
+                    return null;
+                }
+
+                return entity;
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("An error occurred while retrieving the entity.", ex);
+            }
+        }
+
+        public async Task SaveAsync()
         {
             await _context.SaveChangesAsync();
         }

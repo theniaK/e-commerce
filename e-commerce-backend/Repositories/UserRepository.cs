@@ -1,5 +1,4 @@
-﻿
-using e_commerce_backend.Context;
+﻿using e_commerce_backend.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace e_commerce_backend.Repositories
@@ -12,15 +11,22 @@ namespace e_commerce_backend.Repositories
             _context = context;
         }
 
-        public async Task<bool> CheckEmailAdress(string emailAddress)
+        public async Task<bool> CheckEmailAdressAsync(string emailAddress)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.EmailAddress == emailAddress);
-            if (user == null)
+            try
             {
-                return false;
-            }
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.EmailAddress == emailAddress);
+                if (user == null)
+                {
+                    return false;
+                }
 
-            return true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("An error occurred while getting the user.", ex);
+            }
         }
     }
 }

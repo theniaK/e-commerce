@@ -2,6 +2,6 @@
 {
     public interface IUserRepository
     {
-        Task<bool> CheckEmailAdress(string emailAddress);
+        Task<bool> CheckEmailAdressAsync(string emailAddress);
     }
 }

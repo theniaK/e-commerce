@@ -1,13 +1,17 @@
 using e_commerce_backend.Context;
 using e_commerce_backend.Mapper;
 using e_commerce_backend.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add(new ProducesAttribute("application/json"));
+});
 
-builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -35,21 +39,21 @@ builder.Services.AddCors(options =>
     });
 });
 
-//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-//    .AddJwtBearer(options =>
+//builder.Services.AddAuthentication(jwtbearerdefaults.authenticationscheme)
+//    .addjwtbearer(options =>
 //    {
-//        options.RequireHttpsMetadata = false;  // Set to true in production
-//        options.SaveToken = true;
-//        options.TokenValidationParameters = new TokenValidationParameters
+//        options.requirehttpsmetadata = false;  // set to true in production
+//        options.savetoken = true;
+//        options.tokenvalidationparameters = new tokenvalidationparameters
 //        {
-//            ValidateIssuer = true,
-//            ValidateAudience = true,
-//            ValidIssuer = "your-issuer", // Replace with your issuer
-//            ValidAudience = "your-audience", // Replace with your audience
-//            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("your-secret-key")) // Secret key for signing tokens
+//            validateissuer = true,
+//            validateaudience = true,
+//            validissuer = "your-issuer", // replace with your issuer
+//            validaudience = "your-audience", // replace with your audience
+//            issuersigningkey = new symmetricsecuritykey(encoding.utf8.getbytes("your-secret-key")) // secret key for signing tokens
 //        };
 //    });
-//builder.Services.AddAuthorization();
+builder.Services.AddAuthentication();
 
 // Configure the PostgresConnection
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
