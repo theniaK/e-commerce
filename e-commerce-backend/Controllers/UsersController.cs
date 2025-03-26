@@ -51,18 +51,9 @@ namespace e_commerce_backend.Controllers
                 return BadRequest("Model received is not valid");
             }
 
+            string saltString = SaltGenerator.GenerateSalt(); // Generate salt
             var user = _mapper.Map<User>(userDto);
             user.LastLogIn = DateTime.UtcNow;
-
-            // Generate a random salt
-            byte[] saltBytes = new byte[128 / 8];
-            using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
-            {
-                rng.GetNonZeroBytes(saltBytes);
-            }
-
-            string saltString = Convert.ToBase64String(saltBytes); // Convert salt to a storable string
-
             user.PasswordSalt = saltString; // Store salt in database
             user.Password = _passwordHasher.HashPassword(userDto.Password, saltString); // Hash password with salt
 

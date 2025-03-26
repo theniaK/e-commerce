@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\repositories\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:repositories\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\repositories\\ipasswordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -29,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{701D6F18-890C-4D32-88D6-29F352C96625}|e-commerce-backend.csproj|c:\\users\\theni\\e-commerce\\e-commerce-backend\\repositories\\baserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -58,11 +58,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "ItemsController.cs",
               "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Controllers\\ItemsController.cs",
               "RelativeDocumentMoniker": "Controllers\\ItemsController.cs",
@@ -76,7 +76,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "UsersController.cs",
               "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Controllers\\UsersController.cs",
               "RelativeDocumentMoniker": "Controllers\\UsersController.cs",
@@ -86,32 +86,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-23T19:29:48.123Z",
               "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PasswordHasher.cs",
-              "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Repositories\\PasswordHasher.cs",
-              "RelativeDocumentMoniker": "Repositories\\PasswordHasher.cs",
-              "ToolTip": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Repositories\\PasswordHasher.cs",
-              "RelativeToolTip": "Repositories\\PasswordHasher.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAABFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-26T18:40:46.189Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IPasswordHasher.cs",
-              "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Repositories\\IPasswordHasher.cs",
-              "RelativeDocumentMoniker": "Repositories\\IPasswordHasher.cs",
-              "ToolTip": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Repositories\\IPasswordHasher.cs",
-              "RelativeToolTip": "Repositories\\IPasswordHasher.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-26T18:40:18.355Z",
               "EditorCaption": ""
             },
             {
@@ -132,6 +106,32 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PasswordHasher.cs",
+              "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Repositories\\PasswordHasher.cs",
+              "RelativeDocumentMoniker": "Repositories\\PasswordHasher.cs",
+              "ToolTip": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Repositories\\PasswordHasher.cs",
+              "RelativeToolTip": "Repositories\\PasswordHasher.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T18:40:46.189Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IPasswordHasher.cs",
+              "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Repositories\\IPasswordHasher.cs",
+              "RelativeDocumentMoniker": "Repositories\\IPasswordHasher.cs",
+              "ToolTip": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Repositories\\IPasswordHasher.cs",
+              "RelativeToolTip": "Repositories\\IPasswordHasher.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T18:40:18.355Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 10,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Repositories\\UserRepository.cs",
@@ -144,15 +144,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAIwBUAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-23T20:32:42.59Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-23T22:50:04.195Z",
               "EditorCaption": ""
             },
             {
@@ -169,7 +182,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "RoleNames.cs",
               "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Helpers\\RoleNames.cs",
               "RelativeDocumentMoniker": "Helpers\\RoleNames.cs",
@@ -182,7 +195,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\Models\\User.cs",
               "RelativeDocumentMoniker": "Models\\User.cs",
@@ -204,19 +217,6 @@
               "ViewState": "AgIAAD4AAAAAAAAAAAAjwEoAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-23T21:22:26.083Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Users\\theni\\e-commerce\\e-commerce-backend\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-23T22:50:04.195Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
