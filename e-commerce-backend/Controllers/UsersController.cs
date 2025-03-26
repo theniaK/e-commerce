@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Security.Cryptography;
+using AutoMapper;
 using e_commerce_backend.Context;
 using e_commerce_backend.DTOs;
 using e_commerce_backend.Helpers;
@@ -15,16 +16,25 @@ namespace e_commerce_backend.Controllers
     public class UsersController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly IPasswordHasher _passwordHasher;
         private readonly IBaseRepository<User> _baseRepository;
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
 
-        public UsersController(ApplicationDbContext context, IMapper mapper, IBaseRepository<User> baseRepository, IUserRepository userRepository)
+        public UsersController(
+            ApplicationDbContext context, 
+            IMapper mapper, 
+            IBaseRepository<User> baseRepository, 
+            IUserRepository userRepository, 
+            IConfiguration config, 
+            IPasswordHasher passwordHasher)
         {
             _context = context;
             _mapper = mapper;
             _baseRepository = baseRepository;
-            _userRepository = userRepository;        }
+            _userRepository = userRepository;
+            _passwordHasher = passwordHasher;
+        }
 
         /// <summary>
         /// Post user
@@ -43,16 +53,25 @@ namespace e_commerce_backend.Controllers
 
             var user = _mapper.Map<User>(userDto);
             user.LastLogIn = DateTime.UtcNow;
-            if (user == null) 
+
+            // Generate a random salt
+            byte[] saltBytes = new byte[128 / 8];
+            using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
             {
-                return BadRequest("Failed to map the user data.");
+                rng.GetNonZeroBytes(saltBytes);
             }
+
+            string saltString = Convert.ToBase64String(saltBytes); // Convert salt to a storable string
+
+            user.PasswordSalt = saltString; // Store salt in database
+            user.Password = _passwordHasher.HashPassword(userDto.Password, saltString); // Hash password with salt
 
             var isUser = await _userRepository.CheckEmailAdressAsync(user.EmailAddress);
             if (isUser)
             {
                 return BadRequest("User already exists.");
             }
+
             await _baseRepository.AddEntityAsync(user);
             return Ok(new { message = "User successfully registered", userId = user.Id });
         }
@@ -67,16 +86,25 @@ namespace e_commerce_backend.Controllers
         [ProducesResponseType(404)]
         public async Task<ActionResult> SignInUser(UserCredentialsDTO userCred)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.EmailAddress == userCred.EmailAddress
-                                                                  && u.Password == userCred.Password);
-            if (user != null)
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.EmailAddress == userCred.EmailAddress);
+
+            if (user == null)
+            {
+                return NotFound("Invalid credentials.");
+            }
+
+            // Hash the entered password using the stored salt
+            string enteredHashedPassword = _passwordHasher.HashPassword(userCred.Password, user.PasswordSalt);
+
+            // Compare the newly computed hash with the stored hash
+            if (enteredHashedPassword == user.Password)
             {
                 user.LastLogIn = DateTime.UtcNow;
                 await _baseRepository.SaveAsync();
                 return Ok(user);
             }
 
-            return NotFound();
+            return NotFound("Invalid credentials.");
         }
 
         /// <summary>
@@ -140,7 +168,7 @@ namespace e_commerce_backend.Controllers
         /// Delete all users
         /// </summary>
         /// <returns>No content response if succesful.</returns>
-        [Authorize]
+        //[Authorize]
         [HttpDelete("users")]
         [ProducesResponseType(204)]
         public async Task<ActionResult> DeleteAllUsers()

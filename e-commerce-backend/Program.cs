@@ -19,6 +19,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 builder.Services.AddScoped<IItemRepository, ItemRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 
 builder.Services.AddCors(options =>
 {
@@ -39,20 +40,6 @@ builder.Services.AddCors(options =>
     });
 });
 
-//builder.Services.AddAuthentication(jwtbearerdefaults.authenticationscheme)
-//    .addjwtbearer(options =>
-//    {
-//        options.requirehttpsmetadata = false;  // set to true in production
-//        options.savetoken = true;
-//        options.tokenvalidationparameters = new tokenvalidationparameters
-//        {
-//            validateissuer = true,
-//            validateaudience = true,
-//            validissuer = "your-issuer", // replace with your issuer
-//            validaudience = "your-audience", // replace with your audience
-//            issuersigningkey = new symmetricsecuritykey(encoding.utf8.getbytes("your-secret-key")) // secret key for signing tokens
-//        };
-//    });
 builder.Services.AddAuthentication();
 
 // Configure the PostgresConnection

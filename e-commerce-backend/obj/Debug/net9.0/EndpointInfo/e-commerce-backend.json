@@ -490,6 +490,10 @@
             "type": "string",
             "nullable": true
           },
+          "passwordSalt": {
+            "type": "string",
+            "nullable": true
+          },
           "phoneNumber": {
             "type": "string",
             "nullable": true
