@@ -1,13 +1,14 @@
-﻿using System.Security.Cryptography;
-using AutoMapper;
+﻿using AutoMapper;
 using e_commerce_backend.Context;
 using e_commerce_backend.DTOs;
 using e_commerce_backend.Helpers;
 using e_commerce_backend.Models;
 using e_commerce_backend.Repositories;
+using e_commerce_backend.Resources;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
 
 namespace e_commerce_backend.Controllers
 {
@@ -82,14 +83,16 @@ namespace e_commerce_backend.Controllers
 
             if (user == null)
             {
-                return NotFound("User not found.");
+                return NotFound("Invalid credentials");
             }
 
             // Hash the entered password using the stored salt
             string enteredHashedPassword = _passwordHasher.HashPassword(userCred.Password, user.PasswordSalt);
+            byte[] enteredHashBytes = System.Text.Encoding.UTF8.GetBytes(enteredHashedPassword);
+            byte[] storedHashBytes = System.Text.Encoding.UTF8.GetBytes(user.Password);
 
             // Compare the newly computed hash with the stored hash
-            if (enteredHashedPassword == user.Password)
+            if (CryptographicOperations.FixedTimeEquals(enteredHashBytes, storedHashBytes))
             {
                 user.LastLogIn = DateTime.UtcNow;
                 await _baseRepository.SaveAsync();

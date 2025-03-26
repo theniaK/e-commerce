@@ -1,4 +1,4 @@
-﻿namespace e_commerce_backend.Repositories
+﻿namespace e_commerce_backend.Resources
 {
     public interface IPasswordHasher
     {

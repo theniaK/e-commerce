@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Text;
 
-namespace e_commerce_backend.Repositories
+namespace e_commerce_backend.Resources
 {
     public class PasswordHasher : IPasswordHasher
     {

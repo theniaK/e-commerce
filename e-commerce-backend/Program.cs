@@ -1,6 +1,7 @@
 using e_commerce_backend.Context;
 using e_commerce_backend.Mapper;
 using e_commerce_backend.Repositories;
+using e_commerce_backend.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
