@@ -74,6 +74,7 @@ namespace e_commerce_backend.Controllers
         /// <returns>The user if found; otherwise, a 404 Not Found response.</returns>
         [HttpPost("signin")]
         [ProducesResponseType(200)]
+        [ProducesResponseType(401)]
         [ProducesResponseType(404)]
         public async Task<ActionResult> SignInUser(UserCredentialsDTO userCred)
         {
@@ -81,7 +82,7 @@ namespace e_commerce_backend.Controllers
 
             if (user == null)
             {
-                return NotFound("Invalid credentials.");
+                return NotFound("User not found.");
             }
 
             // Hash the entered password using the stored salt
@@ -95,7 +96,7 @@ namespace e_commerce_backend.Controllers
                 return Ok(user);
             }
 
-            return NotFound("Invalid credentials.");
+            return Unauthorized("Invalid credentials.");
         }
 
         /// <summary>

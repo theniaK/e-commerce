@@ -191,6 +191,13 @@
         "MediaTypes": [
           "application/json"
         ],
+        "StatusCode": 401
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 404
       }
     ]

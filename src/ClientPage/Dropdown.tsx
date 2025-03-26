@@ -43,6 +43,7 @@ const Dropdown = ({ dropdownVisible, responseData }: props) => {
   const handleNavigate = () => {
     navigate("/profile", { state: { responseData: responseData } });
   };
+
   return (
     <div
       className={`${classes.dropdown} ${

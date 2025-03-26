@@ -2,9 +2,9 @@
 
 namespace e_commerce_backend.Helpers
 {
-    public static class SaltGenerator
+    internal static class SaltGenerator
     {
-        public static string GenerateSalt()
+        internal static string GenerateSalt()
         {
             byte[] saltBytes = new byte[128 / 8];
             using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
