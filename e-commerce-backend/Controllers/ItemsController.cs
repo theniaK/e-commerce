@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using e_commerce_backend.Context;
 using e_commerce_backend.DTOs;
 using e_commerce_backend.Models;
 using e_commerce_backend.Repositories;
@@ -12,15 +11,13 @@ namespace e_commerce_backend.Controllers
     [Route("api/[controller]")]
     public class ItemsController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
         private readonly IBaseRepository<Item> _baseRepository;
         private readonly IItemRepository _itemRepository;
         private readonly IWebHostEnvironment _env;
         private readonly IMapper _mapper;
 
-        public ItemsController(ApplicationDbContext context, IWebHostEnvironment env, IMapper mapper, IBaseRepository<Item> baseRepository, IItemRepository itemRepository)
+        public ItemsController(IWebHostEnvironment env, IMapper mapper, IBaseRepository<Item> baseRepository, IItemRepository itemRepository)
         {
-            _context = context;
             _env = env;
             _mapper = mapper;
             _baseRepository = baseRepository;
